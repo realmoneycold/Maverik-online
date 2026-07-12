@@ -1,0 +1,64 @@
+MAVERIK: Product Requirements Document (PRD)
+1. Product Vision
+MAVERIK is a fully autonomous, local-first "Jarvis-like" desktop voice assistant. Unlike standard chatbots, MAVERIK possesses "agency" over the operating system, enabling it to see the screen, listen to the user, and execute complex, multi-step actions (opening applications, sending emails, web browsing, coding) autonomously.
+
+2. Core Objectives
+Frictionless Interaction: Must activate via a highly responsive wake-word ("Hey Maverik").
+Computer Agency: Must be able to control the local machine (execute terminal commands, manage files, open applications).
+Multi-Agent Cognition: Should eventually support a "swarm" of specialized AI agents to handle complex reasoning tasks.
+Privacy First: Core operations (Wake Word, STT) must run locally to minimize latency and protect privacy.
+3. Technology Stack (Open Source)
+Wake Word Engine (The Guard): openWakeWord (Local, zero-latency detection of "Hey Maverik")
+Voice Activity Detection (The Gater): Silero VAD (Filters out noise, detects when human speech starts/stops)
+Speech-to-Text (Hearing): faster-whisper (Local, fast transcription of the recorded command)
+Cognition & Computer Agency (The Hands): Agent-S (simular-ai/agent-s)
+Web Automation Engine (The Surfer): Browser-Use (browser-use/browser-use)
+Text-to-Speech (The Mouth): Kokoro (Primary, Low-Latency) / VibeVoice (Optional, High-Fidelity)
+Vision/Context (Future): OpenCV / Pillow for screen capture, paired with a multimodal LLM.
+Agent Orchestration (Phase 2): Ruflo / Agency-Agents concepts.
+4. Phased Implementation Plan
+Phase 1: The Core Loop (Voice -> Text -> Action)
+ Set up Python virtual environment and requirements.txt.
+ Implement openWakeWord to constantly listen for the trigger word in the background.
+ Integrate Silero VAD to take over the microphone stream upon wake, recording the command until silence is detected.
+ Send the recorded audio chunk to faster-whisper for fast transcription.
+ Connect transcribed text to the Main Brain (Agent-S).
+ Implement Kokoro/VibeVoice Text-to-Speech to read the agent's responses back.
+Phase 2: Agentic Upgrades (The Swarm & Advanced Brain)
+ Upgrade The Brain from a basic chat loop to a Cognitive Architecture (using a framework like SmolAgents or LangGraph).
+ Implement long-term Memory and a Plan & Execute framework so MAVERIK plans before acting.
+ Define specialized agent roles (e.g., Browser Brain, Terminal Brain) coordinated by the Main Brain.
+ Integrate Agent-S (gui-agents) for physical mouse/keyboard control and Browser-Use for web surfing.
+Phase 3: Vision & Polish
+ Add screen-reading and webcam integration for multimodal understanding.
+ Package into a standalone Desktop UI (Taskbar minimized, floating orb during interaction).
+5. Detailed Capabilities Matrix (The Ultimate Vision)
+To achieve true "Jarvis-level" autonomy, MAVERIK must eventually be capable of the following skills (powered by Agent-S, Browser-Use, and Vision Models):
+
+System Control: Manage files, change volume, adjust screen brightness, set timers.
+App Operation: Autonomously open and use applications (Spotify, Notion, Telegram, etc.).
+Proactive Notification Analysis: Read incoming notifications (e.g., emails about interviews) and alert the user when MAVERIK is turned on, allowing the user to dictate a response ("tell him it's cancelled").
+Calendar & To-Do Management: Check schedules, select dates, add calendar events, and manage task lists.
+Web Browsing & Research: Go to any website, understand how to use it, read/analyze the news, and conduct Google searches.
+E-commerce & Shopping: Search online markets (Amazon, Taobao) and fetch/compare prices.
+File Manipulation: Convert files (e.g., PDF to Word).
+Advanced Vision & Camera: See through the webcam to recognize what the user is holding, describe the user's face, perform Face ID authentication to verify the owner, and analyze/translate video and images accurately.
+6. Non-Goals (Out of Scope for v1.0)
+Mobile application.
+Smart home device integrations (unless scriptable via local network).
+
+
+
+Absolutely! You did incredible work setting up the foundation for MAVERIK.
+
+🏆 What We Have Accomplished So Far:
+The Professional Framework: Established the maverik/ package architecture.
+"The Ears" are 100% Complete: Background Wake Word (openWakeWord), Audio Gating (Silero VAD), and Speech-to-Text (faster-whisper) are fully functioning locally.
+"The Mouth" is Complete: Integrated Kokoro TTS for low-latency voice responses, running on a parallel thread.
+"The Basic Brain": Connected the local LLM (Ollama) with real-time streaming text generation.
+"The Hands" Foundation: Created the agency module (hands.py) capable of executing native terminal commands.
+
+🚀 Next Steps (The Advanced Roadmap - We will strictly follow this):
+Step 1: Upgrade The Brain (Cognitive Architecture): We will integrate an open-source agent framework (like SmolAgents/LangGraph) into the Brain to give MAVERIK true reasoning, memory, and the ability to use tools safely.
+Step 2: The Surfer (Web Agency): We will wire browser-use into the upgraded Brain so MAVERIK can navigate the internet autonomously.
+Step 3: The Hands (GUI Agency): We will fully implement gui-agents (Agent-S) so MAVERIK can control the mouse and keyboard.

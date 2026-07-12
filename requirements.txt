@@ -1,0 +1,33 @@
+# Frictionless Interaction (The Ears)
+openwakeword>=0.5.1
+pyaudio>=0.2.14
+numpy<2.0.0
+scipy>=1.10.1
+
+# Silero VAD (Audio Gating)
+torch>=2.0.0
+torchaudio>=2.0.0
+
+# Speech-to-Text (Transcription)
+faster-whisper>=1.0.0
+
+# The Brain (Cognition)
+ollama>=0.3.0
+smolagents>=1.0.0
+
+# The Hands (Agency)
+gui-agents>=0.1.0
+
+# The Surfer (Web Automation)
+browser-use>=0.1.0
+
+# The Mouth (Voice/TTS)
+kokoro>=0.3.0
+soundfile>=0.12.0
+RealtimeTTS>=0.3.0
+
+# Reliability (Watchdog)
+tenacity>=8.0.0
+
+# Fast Web Search (API-less)
+duckduckgo-search>=6.0.0

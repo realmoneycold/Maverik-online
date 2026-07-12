@@ -1,0 +1,1016 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.280 --> 00:00:02.230 align:start position:0%
+ 
+your<00:00:00.520><c> local</c><00:00:00.840><c> AI</c><00:00:01.160><c> experience</c><00:00:01.560><c> might</c><00:00:01.760><c> look</c><00:00:02.000><c> like</c>
+
+00:00:02.230 --> 00:00:02.240 align:start position:0%
+your local AI experience might look like
+ 
+
+00:00:02.240 --> 00:00:04.070 align:start position:0%
+your local AI experience might look like
+this<00:00:02.679><c> a</c><00:00:02.800><c> model</c><00:00:03.080><c> that's</c><00:00:03.199><c> using</c><00:00:03.560><c> almost</c><00:00:03.879><c> all</c>
+
+00:00:04.070 --> 00:00:04.080 align:start position:0%
+this a model that's using almost all
+ 
+
+00:00:04.080 --> 00:00:06.110 align:start position:0%
+this a model that's using almost all
+your<00:00:04.240><c> system</c><00:00:04.640><c> resources</c><00:00:05.319><c> is</c><00:00:05.480><c> almost</c><00:00:05.720><c> burning</c>
+
+00:00:06.110 --> 00:00:06.120 align:start position:0%
+your system resources is almost burning
+ 
+
+00:00:06.120 --> 00:00:08.470 align:start position:0%
+your system resources is almost burning
+your<00:00:06.359><c> PC</c><00:00:07.040><c> and</c><00:00:07.200><c> in</c><00:00:07.359><c> the</c><00:00:07.480><c> end</c><00:00:07.759><c> isn't</c><00:00:08.040><c> even</c><00:00:08.280><c> that</c>
+
+00:00:08.470 --> 00:00:08.480 align:start position:0%
+your PC and in the end isn't even that
+ 
+
+00:00:08.480 --> 00:00:11.110 align:start position:0%
+your PC and in the end isn't even that
+quick<00:00:09.360><c> well</c><00:00:09.719><c> my</c><00:00:09.880><c> local</c><00:00:10.200><c> AI</c><00:00:10.519><c> experience</c><00:00:10.840><c> looks</c>
+
+00:00:11.110 --> 00:00:11.120 align:start position:0%
+quick well my local AI experience looks
+ 
+
+00:00:11.120 --> 00:00:13.789 align:start position:0%
+quick well my local AI experience looks
+like<00:00:11.400><c> this</c><00:00:12.000><c> I</c><00:00:12.160><c> run</c><00:00:12.440><c> AI</c><00:00:12.719><c> models</c><00:00:13.080><c> almost</c><00:00:13.519><c> five</c>
+
+00:00:13.789 --> 00:00:13.799 align:start position:0%
+like this I run AI models almost five
+ 
+
+00:00:13.799 --> 00:00:16.150 align:start position:0%
+like this I run AI models almost five
+times<00:00:14.080><c> as</c><00:00:14.320><c> fast</c><00:00:14.719><c> because</c><00:00:15.000><c> I</c><00:00:15.120><c> use</c><00:00:15.440><c> quantized</c>
+
+00:00:16.150 --> 00:00:16.160 align:start position:0%
+times as fast because I use quantized
+ 
+
+00:00:16.160 --> 00:00:18.349 align:start position:0%
+times as fast because I use quantized
+models<00:00:16.960><c> let</c><00:00:17.080><c> me</c><00:00:17.240><c> explain</c><00:00:17.640><c> how</c><00:00:17.800><c> that</c><00:00:17.960><c> works</c><00:00:18.199><c> and</c>
+
+00:00:18.349 --> 00:00:18.359 align:start position:0%
+models let me explain how that works and
+ 
+
+00:00:18.359 --> 00:00:20.230 align:start position:0%
+models let me explain how that works and
+how<00:00:18.520><c> you</c><00:00:18.600><c> can</c><00:00:18.800><c> achieve</c><00:00:19.080><c> the</c><00:00:19.279><c> same</c><00:00:19.960><c> when</c><00:00:20.080><c> you</c>
+
+00:00:20.230 --> 00:00:20.240 align:start position:0%
+how you can achieve the same when you
+ 
+
+00:00:20.240 --> 00:00:22.550 align:start position:0%
+how you can achieve the same when you
+browse<00:00:20.640><c> hugging</c><00:00:21.039><c> phas</c><00:00:21.320><c> to</c><00:00:21.560><c> find</c><00:00:21.840><c> your</c><00:00:22.039><c> new</c><00:00:22.279><c> AI</c>
+
+00:00:22.550 --> 00:00:22.560 align:start position:0%
+browse hugging phas to find your new AI
+ 
+
+00:00:22.560 --> 00:00:24.710 align:start position:0%
+browse hugging phas to find your new AI
+models<00:00:22.880><c> to</c><00:00:23.039><c> run</c><00:00:23.279><c> locally</c><00:00:23.880><c> you</c><00:00:24.119><c> might</c><00:00:24.320><c> make</c><00:00:24.519><c> the</c>
+
+00:00:24.710 --> 00:00:24.720 align:start position:0%
+models to run locally you might make the
+ 
+
+00:00:24.720 --> 00:00:26.990 align:start position:0%
+models to run locally you might make the
+mistake<00:00:25.160><c> of</c><00:00:25.359><c> trying</c><00:00:25.599><c> to</c><00:00:25.800><c> use</c><00:00:26.160><c> the</c><00:00:26.320><c> models</c><00:00:26.880><c> as</c>
+
+00:00:26.990 --> 00:00:27.000 align:start position:0%
+mistake of trying to use the models as
+ 
+
+00:00:27.000 --> 00:00:28.429 align:start position:0%
+mistake of trying to use the models as
+they<00:00:27.160><c> were</c><00:00:27.359><c> provided</c><00:00:27.800><c> by</c><00:00:27.920><c> the</c><00:00:28.039><c> original</c>
+
+00:00:28.429 --> 00:00:28.439 align:start position:0%
+they were provided by the original
+ 
+
+00:00:28.439 --> 00:00:31.830 align:start position:0%
+they were provided by the original
+Creator<00:00:29.279><c> as</c><00:00:29.560><c> is</c><00:00:30.320><c> for</c><00:00:30.560><c> example</c><00:00:31.320><c> let's</c><00:00:31.519><c> say</c><00:00:31.720><c> that</c>
+
+00:00:31.830 --> 00:00:31.840 align:start position:0%
+Creator as is for example let's say that
+ 
+
+00:00:31.840 --> 00:00:34.110 align:start position:0%
+Creator as is for example let's say that
+you<00:00:31.960><c> want</c><00:00:32.079><c> to</c><00:00:32.239><c> use</c><00:00:32.480><c> mistol</c><00:00:33.480><c> if</c><00:00:33.600><c> I</c><00:00:33.760><c> look</c><00:00:33.920><c> for</c>
+
+00:00:34.110 --> 00:00:34.120 align:start position:0%
+you want to use mistol if I look for
+ 
+
+00:00:34.120 --> 00:00:37.350 align:start position:0%
+you want to use mistol if I look for
+mistol<00:00:35.040><c> 7B</c><00:00:36.040><c> I</c><00:00:36.120><c> can</c><00:00:36.360><c> find</c><00:00:36.719><c> a</c><00:00:36.840><c> lot</c><00:00:36.960><c> of</c><00:00:37.120><c> different</c>
+
+00:00:37.350 --> 00:00:37.360 align:start position:0%
+mistol 7B I can find a lot of different
+ 
+
+00:00:37.360 --> 00:00:40.670 align:start position:0%
+mistol 7B I can find a lot of different
+models<00:00:37.840><c> officially</c><00:00:38.399><c> published</c><00:00:39.200><c> by</c><00:00:39.399><c> mistal</c><00:00:39.840><c> Ai</c>
+
+00:00:40.670 --> 00:00:40.680 align:start position:0%
+models officially published by mistal Ai
+ 
+
+00:00:40.680 --> 00:00:42.590 align:start position:0%
+models officially published by mistal Ai
+and<00:00:40.760><c> so</c><00:00:40.960><c> you</c><00:00:41.120><c> might</c><00:00:41.399><c> think</c><00:00:41.920><c> hey</c><00:00:42.160><c> this</c><00:00:42.280><c> is</c><00:00:42.399><c> the</c>
+
+00:00:42.590 --> 00:00:42.600 align:start position:0%
+and so you might think hey this is the
+ 
+
+00:00:42.600 --> 00:00:44.029 align:start position:0%
+and so you might think hey this is the
+exact<00:00:42.840><c> model</c><00:00:43.120><c> that</c><00:00:43.200><c> I</c><00:00:43.320><c> want</c><00:00:43.440><c> to</c><00:00:43.559><c> use</c><00:00:43.879><c> because</c>
+
+00:00:44.029 --> 00:00:44.039 align:start position:0%
+exact model that I want to use because
+ 
+
+00:00:44.039 --> 00:00:46.869 align:start position:0%
+exact model that I want to use because
+it's<00:00:44.200><c> the</c><00:00:44.399><c> official</c><00:00:44.800><c> one</c><00:00:45.559><c> and</c><00:00:45.960><c> to</c><00:00:46.079><c> be</c><00:00:46.239><c> fair</c><00:00:46.760><c> if</c>
+
+00:00:46.869 --> 00:00:46.879 align:start position:0%
+it's the official one and to be fair if
+ 
+
+00:00:46.879 --> 00:00:48.790 align:start position:0%
+it's the official one and to be fair if
+your<00:00:47.039><c> machine</c><00:00:47.360><c> can</c><00:00:47.559><c> handle</c><00:00:47.960><c> this</c><00:00:48.360><c> then</c><00:00:48.559><c> that's</c>
+
+00:00:48.790 --> 00:00:48.800 align:start position:0%
+your machine can handle this then that's
+ 
+
+00:00:48.800 --> 00:00:51.350 align:start position:0%
+your machine can handle this then that's
+totally<00:00:49.199><c> fine</c><00:00:49.760><c> but</c><00:00:49.920><c> mistro</c><00:00:50.320><c> 7B</c><00:00:50.719><c> is</c><00:00:50.840><c> already</c><00:00:51.079><c> a</c>
+
+00:00:51.350 --> 00:00:51.360 align:start position:0%
+totally fine but mistro 7B is already a
+ 
+
+00:00:51.360 --> 00:00:53.790 align:start position:0%
+totally fine but mistro 7B is already a
+very<00:00:51.840><c> large</c><00:00:52.440><c> model</c><00:00:53.160><c> and</c><00:00:53.320><c> if</c><00:00:53.440><c> you</c><00:00:53.559><c> have</c><00:00:53.680><c> a</c>
+
+00:00:53.790 --> 00:00:53.800 align:start position:0%
+very large model and if you have a
+ 
+
+00:00:53.800 --> 00:00:55.990 align:start position:0%
+very large model and if you have a
+weaker<00:00:54.160><c> GPU</c><00:00:54.840><c> you</c><00:00:55.000><c> are</c><00:00:55.199><c> not</c><00:00:55.440><c> going</c><00:00:55.559><c> to</c><00:00:55.680><c> be</c><00:00:55.800><c> able</c>
+
+00:00:55.990 --> 00:00:56.000 align:start position:0%
+weaker GPU you are not going to be able
+ 
+
+00:00:56.000 --> 00:00:58.750 align:start position:0%
+weaker GPU you are not going to be able
+to<00:00:56.120><c> run</c><00:00:56.399><c> this</c><00:00:56.920><c> so</c><00:00:57.199><c> what</c><00:00:57.280><c> do</c><00:00:57.399><c> you</c><00:00:57.559><c> do</c><00:00:57.840><c> then</c><00:00:58.519><c> well</c>
+
+00:00:58.750 --> 00:00:58.760 align:start position:0%
+to run this so what do you do then well
+ 
+
+00:00:58.760 --> 00:01:01.029 align:start position:0%
+to run this so what do you do then well
+actually<00:00:59.039><c> what</c><00:00:59.160><c> you</c><00:00:59.280><c> should</c><00:00:59.559><c> do</c><00:01:00.239><c> is</c><00:01:00.480><c> scroll</c>
+
+00:01:01.029 --> 00:01:01.039 align:start position:0%
+actually what you should do is scroll
+ 
+
+00:01:01.039 --> 00:01:03.150 align:start position:0%
+actually what you should do is scroll
+down<00:01:01.480><c> and</c><00:01:01.719><c> look</c><00:01:02.280><c> at</c><00:01:02.480><c> the</c><00:01:02.719><c> different</c>
+
+00:01:03.150 --> 00:01:03.160 align:start position:0%
+down and look at the different
+ 
+
+00:01:03.160 --> 00:01:05.750 align:start position:0%
+down and look at the different
+fine-tuned<00:01:03.920><c> models</c><00:01:04.360><c> that</c><00:01:04.519><c> are</c><00:01:04.799><c> created</c><00:01:05.479><c> based</c>
+
+00:01:05.750 --> 00:01:05.760 align:start position:0%
+fine-tuned models that are created based
+ 
+
+00:01:05.760 --> 00:01:08.190 align:start position:0%
+fine-tuned models that are created based
+on<00:01:05.920><c> the</c><00:01:06.040><c> base</c><00:01:06.360><c> model</c><00:01:07.240><c> specifically</c><00:01:07.840><c> you</c><00:01:08.040><c> want</c>
+
+00:01:08.190 --> 00:01:08.200 align:start position:0%
+on the base model specifically you want
+ 
+
+00:01:08.200 --> 00:01:11.270 align:start position:0%
+on the base model specifically you want
+to<00:01:08.400><c> look</c><00:01:08.640><c> at</c><00:01:08.880><c> models</c><00:01:09.600><c> under</c><00:01:09.880><c> the</c><00:01:10.159><c> category</c>
+
+00:01:11.270 --> 00:01:11.280 align:start position:0%
+to look at models under the category
+ 
+
+00:01:11.280 --> 00:01:13.510 align:start position:0%
+to look at models under the category
+quantizations<00:01:12.280><c> I'll</c><00:01:12.520><c> explain</c><00:01:12.840><c> later</c><00:01:13.320><c> what</c>
+
+00:01:13.510 --> 00:01:13.520 align:start position:0%
+quantizations I'll explain later what
+ 
+
+00:01:13.520 --> 00:01:15.870 align:start position:0%
+quantizations I'll explain later what
+quantized<00:01:14.040><c> models</c><00:01:14.400><c> actually</c><00:01:14.640><c> are</c><00:01:15.400><c> but</c><00:01:15.640><c> to</c>
+
+00:01:15.870 --> 00:01:15.880 align:start position:0%
+quantized models actually are but to
+ 
+
+00:01:15.880 --> 00:01:17.749 align:start position:0%
+quantized models actually are but to
+illustrate<00:01:16.479><c> this</c><00:01:16.799><c> if</c><00:01:16.920><c> we</c><00:01:17.080><c> click</c><00:01:17.360><c> on</c><00:01:17.640><c> the</c>
+
+00:01:17.749 --> 00:01:17.759 align:start position:0%
+illustrate this if we click on the
+ 
+
+00:01:17.759 --> 00:01:20.190 align:start position:0%
+illustrate this if we click on the
+models<00:01:18.159><c> list</c><00:01:18.479><c> here</c><00:01:19.439><c> we</c><00:01:19.560><c> can</c><00:01:19.759><c> actually</c><00:01:20.000><c> see</c>
+
+00:01:20.190 --> 00:01:20.200 align:start position:0%
+models list here we can actually see
+ 
+
+00:01:20.200 --> 00:01:22.350 align:start position:0%
+models list here we can actually see
+that<00:01:20.320><c> there's</c><00:01:20.520><c> a</c><00:01:20.680><c> lot</c><00:01:20.799><c> of</c><00:01:21.000><c> quantized</c><00:01:21.640><c> models</c>
+
+00:01:22.350 --> 00:01:22.360 align:start position:0%
+that there's a lot of quantized models
+ 
+
+00:01:22.360 --> 00:01:24.749 align:start position:0%
+that there's a lot of quantized models
+and<00:01:22.520><c> we</c><00:01:22.600><c> can</c><00:01:22.799><c> for</c><00:01:23.000><c> example</c><00:01:23.520><c> explore</c><00:01:24.119><c> this</c><00:01:24.280><c> one</c>
+
+00:01:24.749 --> 00:01:24.759 align:start position:0%
+and we can for example explore this one
+ 
+
+00:01:24.759 --> 00:01:27.950 align:start position:0%
+and we can for example explore this one
+which<00:01:24.880><c> is</c><00:01:25.000><c> using</c><00:01:25.520><c> 4bit</c><00:01:26.680><c> quantization</c><00:01:27.680><c> you</c><00:01:27.799><c> can</c>
+
+00:01:27.950 --> 00:01:27.960 align:start position:0%
+which is using 4bit quantization you can
+ 
+
+00:01:27.960 --> 00:01:31.310 align:start position:0%
+which is using 4bit quantization you can
+see<00:01:28.320><c> here</c><00:01:28.920><c> that</c><00:01:29.360><c> this</c><00:01:29.560><c> model</c><00:01:30.079><c> is</c><00:01:30.240><c> promising</c><00:01:31.000><c> to</c>
+
+00:01:31.310 --> 00:01:31.320 align:start position:0%
+see here that this model is promising to
+ 
+
+00:01:31.320 --> 00:01:34.830 align:start position:0%
+see here that this model is promising to
+use<00:01:31.640><c> 70%</c><00:01:32.399><c> less</c><00:01:32.680><c> memory</c><00:01:33.479><c> while</c><00:01:33.799><c> being</c><00:01:34.280><c> two</c><00:01:34.600><c> to</c>
+
+00:01:34.830 --> 00:01:34.840 align:start position:0%
+use 70% less memory while being two to
+ 
+
+00:01:34.840 --> 00:01:37.310 align:start position:0%
+use 70% less memory while being two to
+five<00:01:35.119><c> times</c><00:01:35.439><c> faster</c><00:01:36.119><c> and</c><00:01:36.280><c> it's</c><00:01:36.479><c> true</c><00:01:37.119><c> what</c><00:01:37.240><c> I</c>
+
+00:01:37.310 --> 00:01:37.320 align:start position:0%
+five times faster and it's true what I
+ 
+
+00:01:37.320 --> 00:01:38.910 align:start position:0%
+five times faster and it's true what I
+showed<00:01:37.600><c> you</c><00:01:37.720><c> at</c><00:01:37.840><c> the</c><00:01:38.000><c> beginning</c><00:01:38.520><c> is</c><00:01:38.680><c> not</c>
+
+00:01:38.910 --> 00:01:38.920 align:start position:0%
+showed you at the beginning is not
+ 
+
+00:01:38.920 --> 00:01:41.109 align:start position:0%
+showed you at the beginning is not
+clickbait<00:01:39.759><c> if</c><00:01:39.880><c> you</c><00:01:40.159><c> actually</c><00:01:40.399><c> use</c><00:01:40.640><c> quantise</c>
+
+00:01:41.109 --> 00:01:41.119 align:start position:0%
+clickbait if you actually use quantise
+ 
+
+00:01:41.119 --> 00:01:43.149 align:start position:0%
+clickbait if you actually use quantise
+models<00:01:41.720><c> they</c><00:01:41.799><c> will</c><00:01:42.000><c> use</c><00:01:42.520><c> much</c><00:01:42.759><c> fewer</c>
+
+00:01:43.149 --> 00:01:43.159 align:start position:0%
+models they will use much fewer
+ 
+
+00:01:43.159 --> 00:01:46.270 align:start position:0%
+models they will use much fewer
+resources<00:01:43.680><c> while</c><00:01:43.840><c> being</c><00:01:44.399><c> way</c><00:01:44.880><c> faster</c><00:01:45.840><c> here</c><00:01:46.159><c> I</c>
+
+00:01:46.270 --> 00:01:46.280 align:start position:0%
+resources while being way faster here I
+ 
+
+00:01:46.280 --> 00:01:48.109 align:start position:0%
+resources while being way faster here I
+opened<00:01:46.560><c> LM</c><00:01:46.920><c> studio</c><00:01:47.399><c> and</c><00:01:47.520><c> you</c><00:01:47.600><c> can</c><00:01:47.719><c> see</c><00:01:47.960><c> here</c>
+
+00:01:48.109 --> 00:01:48.119 align:start position:0%
+opened LM studio and you can see here
+ 
+
+00:01:48.119 --> 00:01:50.590 align:start position:0%
+opened LM studio and you can see here
+that<00:01:48.320><c> I</c><00:01:48.439><c> have</c><00:01:48.680><c> the</c><00:01:49.079><c> full</c><00:01:49.520><c> 7</c><00:01:49.840><c> billion</c><00:01:50.200><c> parameter</c>
+
+00:01:50.590 --> 00:01:50.600 align:start position:0%
+that I have the full 7 billion parameter
+ 
+
+00:01:50.600 --> 00:01:53.950 align:start position:0%
+that I have the full 7 billion parameter
+mistal<00:01:51.040><c> model</c><00:01:51.680><c> which</c><00:01:51.880><c> is</c><00:01:52.200><c> almost</c><00:01:52.759><c> 30</c><00:01:53.240><c> GB</c><00:01:53.680><c> in</c>
+
+00:01:53.950 --> 00:01:53.960 align:start position:0%
+mistal model which is almost 30 GB in
+ 
+
+00:01:53.960 --> 00:01:57.069 align:start position:0%
+mistal model which is almost 30 GB in
+size<00:01:54.960><c> and</c><00:01:55.360><c> here</c><00:01:55.560><c> I</c><00:01:55.680><c> have</c><00:01:55.880><c> the</c><00:01:56.079><c> Q4</c><00:01:56.719><c> version</c><00:01:57.000><c> of</c>
+
+00:01:57.069 --> 00:01:57.079 align:start position:0%
+size and here I have the Q4 version of
+ 
+
+00:01:57.079 --> 00:01:59.230 align:start position:0%
+size and here I have the Q4 version of
+the<00:01:57.200><c> model</c><00:01:57.560><c> which</c><00:01:57.680><c> is</c><00:01:57.880><c> quantized</c><00:01:58.880><c> and</c><00:01:59.119><c> this</c>
+
+00:01:59.230 --> 00:01:59.240 align:start position:0%
+the model which is quantized and this
+ 
+
+00:01:59.240 --> 00:02:02.709 align:start position:0%
+the model which is quantized and this
+one<00:01:59.479><c> is</c><00:01:59.920><c> only</c><00:02:00.159><c> just</c><00:02:00.600><c> over</c><00:02:00.880><c> 4</c><00:02:01.280><c> GB</c><00:02:01.719><c> in</c><00:02:01.960><c> size</c><00:02:02.520><c> then</c>
+
+00:02:02.709 --> 00:02:02.719 align:start position:0%
+one is only just over 4 GB in size then
+ 
+
+00:02:02.719 --> 00:02:04.870 align:start position:0%
+one is only just over 4 GB in size then
+this<00:02:02.840><c> is</c><00:02:03.039><c> extremely</c><00:02:03.520><c> important</c><00:02:04.079><c> because</c><00:02:04.640><c> not</c>
+
+00:02:04.870 --> 00:02:04.880 align:start position:0%
+this is extremely important because not
+ 
+
+00:02:04.880 --> 00:02:08.910 align:start position:0%
+this is extremely important because not
+many<00:02:05.200><c> consumer</c><00:02:05.880><c> gpus</c><00:02:06.799><c> can</c><00:02:07.039><c> actually</c><00:02:07.360><c> fit</c><00:02:07.719><c> a</c><00:02:08.039><c> 29</c>
+
+00:02:08.910 --> 00:02:08.920 align:start position:0%
+many consumer gpus can actually fit a 29
+ 
+
+00:02:08.920 --> 00:02:13.030 align:start position:0%
+many consumer gpus can actually fit a 29
+gab<00:02:09.399><c> model</c><00:02:10.119><c> into</c><00:02:10.560><c> the</c><00:02:10.720><c> memory</c><00:02:11.200><c> of</c><00:02:11.440><c> the</c><00:02:11.720><c> GPU</c><00:02:12.720><c> so</c>
+
+00:02:13.030 --> 00:02:13.040 align:start position:0%
+gab model into the memory of the GPU so
+ 
+
+00:02:13.040 --> 00:02:14.830 align:start position:0%
+gab model into the memory of the GPU so
+it's<00:02:13.239><c> almost</c><00:02:13.640><c> essential</c><00:02:14.239><c> that</c><00:02:14.360><c> you</c><00:02:14.519><c> find</c>
+
+00:02:14.830 --> 00:02:14.840 align:start position:0%
+it's almost essential that you find
+ 
+
+00:02:14.840 --> 00:02:16.550 align:start position:0%
+it's almost essential that you find
+these<00:02:15.040><c> quantise</c><00:02:15.519><c> models</c><00:02:16.239><c> when</c><00:02:16.400><c> you're</c>
+
+00:02:16.550 --> 00:02:16.560 align:start position:0%
+these quantise models when you're
+ 
+
+00:02:16.560 --> 00:02:19.470 align:start position:0%
+these quantise models when you're
+running<00:02:17.040><c> local</c><00:02:17.400><c> Ai</c><00:02:18.200><c> and</c><00:02:18.440><c> again</c><00:02:18.959><c> even</c><00:02:19.160><c> if</c><00:02:19.319><c> you</c>
+
+00:02:19.470 --> 00:02:19.480 align:start position:0%
+running local Ai and again even if you
+ 
+
+00:02:19.480 --> 00:02:21.550 align:start position:0%
+running local Ai and again even if you
+can<00:02:19.680><c> fit</c><00:02:19.920><c> the</c><00:02:20.040><c> full</c><00:02:20.280><c> model</c><00:02:20.959><c> these</c><00:02:21.160><c> smaller</c>
+
+00:02:21.550 --> 00:02:21.560 align:start position:0%
+can fit the full model these smaller
+ 
+
+00:02:21.560 --> 00:02:24.150 align:start position:0%
+can fit the full model these smaller
+models<00:02:21.879><c> are</c><00:02:22.080><c> also</c><00:02:22.400><c> much</c><00:02:22.680><c> faster</c><00:02:23.360><c> so</c><00:02:23.599><c> really</c>
+
+00:02:24.150 --> 00:02:24.160 align:start position:0%
+models are also much faster so really
+ 
+
+00:02:24.160 --> 00:02:26.910 align:start position:0%
+models are also much faster so really
+finding<00:02:24.640><c> them</c><00:02:24.840><c> is</c><00:02:25.120><c> always</c><00:02:25.599><c> a</c>
+
+00:02:26.910 --> 00:02:26.920 align:start position:0%
+finding them is always a
+ 
+
+00:02:26.920 --> 00:02:29.229 align:start position:0%
+finding them is always a
+winwin<00:02:27.920><c> so</c><00:02:28.120><c> how</c><00:02:28.239><c> does</c><00:02:28.400><c> this</c><00:02:28.599><c> actually</c><00:02:28.920><c> work</c>
+
+00:02:29.229 --> 00:02:29.239 align:start position:0%
+winwin so how does this actually work
+ 
+
+00:02:29.239 --> 00:02:30.750 align:start position:0%
+winwin so how does this actually work
+because<00:02:29.560><c> there's</c><00:02:29.959><c> no</c><00:02:30.080><c> such</c><00:02:30.239><c> thing</c><00:02:30.400><c> as</c><00:02:30.519><c> free</c>
+
+00:02:30.750 --> 00:02:30.760 align:start position:0%
+because there's no such thing as free
+ 
+
+00:02:30.760 --> 00:02:33.350 align:start position:0%
+because there's no such thing as free
+performance<00:02:31.440><c> right</c><00:02:32.120><c> well</c><00:02:32.400><c> modern</c><00:02:32.800><c> AI</c><00:02:33.080><c> models</c>
+
+00:02:33.350 --> 00:02:33.360 align:start position:0%
+performance right well modern AI models
+ 
+
+00:02:33.360 --> 00:02:35.869 align:start position:0%
+performance right well modern AI models
+store<00:02:33.680><c> billions</c><00:02:34.000><c> of</c><00:02:34.160><c> parameters</c><00:02:34.800><c> as</c><00:02:35.040><c> 32-bit</c>
+
+00:02:35.869 --> 00:02:35.879 align:start position:0%
+store billions of parameters as 32-bit
+ 
+
+00:02:35.879 --> 00:02:38.350 align:start position:0%
+store billions of parameters as 32-bit
+floating<00:02:36.319><c> Point</c><00:02:36.560><c> numbers</c><00:02:37.280><c> basically</c><00:02:37.959><c> decimal</c>
+
+00:02:38.350 --> 00:02:38.360 align:start position:0%
+floating Point numbers basically decimal
+ 
+
+00:02:38.360 --> 00:02:40.670 align:start position:0%
+floating Point numbers basically decimal
+numbers<00:02:39.200><c> each</c><00:02:39.440><c> parameter</c><00:02:40.000><c> is</c><00:02:40.159><c> like</c><00:02:40.280><c> a</c><00:02:40.440><c> small</c>
+
+00:02:40.670 --> 00:02:40.680 align:start position:0%
+numbers each parameter is like a small
+ 
+
+00:02:40.680 --> 00:02:42.589 align:start position:0%
+numbers each parameter is like a small
+container<00:02:41.159><c> that</c><00:02:41.280><c> can</c><00:02:41.400><c> hold</c><00:02:41.680><c> numbers</c><00:02:42.120><c> with</c>
+
+00:02:42.589 --> 00:02:42.599 align:start position:0%
+container that can hold numbers with
+ 
+
+00:02:42.599 --> 00:02:45.190 align:start position:0%
+container that can hold numbers with
+extreme<00:02:43.120><c> Precision</c><00:02:44.080><c> think</c><00:02:44.280><c> of</c><00:02:44.560><c> numbers</c><00:02:44.959><c> with</c>
+
+00:02:45.190 --> 00:02:45.200 align:start position:0%
+extreme Precision think of numbers with
+ 
+
+00:02:45.200 --> 00:02:47.110 align:start position:0%
+extreme Precision think of numbers with
+up<00:02:45.319><c> to</c><00:02:45.560><c> seven</c><00:02:46.080><c> decimal</c>
+
+00:02:47.110 --> 00:02:47.120 align:start position:0%
+up to seven decimal
+ 
+
+00:02:47.120 --> 00:02:49.430 align:start position:0%
+up to seven decimal
+places<00:02:48.120><c> now</c><00:02:48.519><c> when</c><00:02:48.680><c> you</c><00:02:48.800><c> have</c><00:02:48.920><c> a</c><00:02:49.040><c> model</c><00:02:49.280><c> like</c>
+
+00:02:49.430 --> 00:02:49.440 align:start position:0%
+places now when you have a model like
+ 
+
+00:02:49.440 --> 00:02:52.710 align:start position:0%
+places now when you have a model like
+Mel<00:02:49.800><c> 7B</c><00:02:50.599><c> There's</c><00:02:50.879><c> 7</c><00:02:51.280><c> billion</c><00:02:51.720><c> parameters</c><00:02:52.599><c> and</c>
+
+00:02:52.710 --> 00:02:52.720 align:start position:0%
+Mel 7B There's 7 billion parameters and
+ 
+
+00:02:52.720 --> 00:02:55.030 align:start position:0%
+Mel 7B There's 7 billion parameters and
+so<00:02:52.879><c> you</c><00:02:53.000><c> can</c><00:02:53.239><c> imagine</c><00:02:53.959><c> that</c><00:02:54.120><c> this</c><00:02:54.200><c> will</c><00:02:54.400><c> end</c><00:02:54.560><c> up</c>
+
+00:02:55.030 --> 00:02:55.040 align:start position:0%
+so you can imagine that this will end up
+ 
+
+00:02:55.040 --> 00:02:57.509 align:start position:0%
+so you can imagine that this will end up
+taking<00:02:55.440><c> a</c><00:02:55.640><c> lot</c><00:02:55.879><c> of</c><00:02:56.159><c> space</c><00:02:56.840><c> and</c><00:02:56.959><c> you</c><00:02:57.159><c> need</c><00:02:57.360><c> to</c>
+
+00:02:57.509 --> 00:02:57.519 align:start position:0%
+taking a lot of space and you need to
+ 
+
+00:02:57.519 --> 00:03:00.270 align:start position:0%
+taking a lot of space and you need to
+load<00:02:57.879><c> this</c><00:02:58.080><c> entire</c><00:02:58.560><c> model</c><00:02:59.080><c> into</c><00:02:59.400><c> memory</c><00:03:00.159><c> in</c>
+
+00:03:00.270 --> 00:03:00.280 align:start position:0%
+load this entire model into memory in
+ 
+
+00:03:00.280 --> 00:03:02.869 align:start position:0%
+load this entire model into memory in
+order<00:03:00.560><c> to</c><00:03:00.720><c> run</c><00:03:00.920><c> it</c><00:03:01.640><c> so</c><00:03:01.920><c> actually</c><00:03:02.480><c> the</c><00:03:02.599><c> full</c>
+
+00:03:02.869 --> 00:03:02.879 align:start position:0%
+order to run it so actually the full
+ 
+
+00:03:02.879 --> 00:03:05.869 align:start position:0%
+order to run it so actually the full
+mistol<00:03:03.319><c> 7B</c><00:03:04.080><c> model</c><00:03:04.720><c> cannot</c><00:03:05.120><c> fit</c><00:03:05.400><c> on</c><00:03:05.599><c> most</c>
+
+00:03:05.869 --> 00:03:05.879 align:start position:0%
+mistol 7B model cannot fit on most
+ 
+
+00:03:05.879 --> 00:03:07.910 align:start position:0%
+mistol 7B model cannot fit on most
+consumer<00:03:06.400><c> Hardware</c><00:03:07.080><c> because</c><00:03:07.319><c> consumer</c><00:03:07.799><c> great</c>
+
+00:03:07.910 --> 00:03:07.920 align:start position:0%
+consumer Hardware because consumer great
+ 
+
+00:03:07.920 --> 00:03:11.430 align:start position:0%
+consumer Hardware because consumer great
+CH<00:03:08.239><c> use</c><00:03:08.760><c> usually</c><00:03:09.120><c> don't</c><00:03:09.480><c> have</c><00:03:10.000><c> over</c><00:03:10.360><c> 20</c><00:03:10.720><c> GB</c><00:03:11.280><c> of</c>
+
+00:03:11.430 --> 00:03:11.440 align:start position:0%
+CH use usually don't have over 20 GB of
+ 
+
+00:03:11.440 --> 00:03:14.390 align:start position:0%
+CH use usually don't have over 20 GB of
+f<00:03:11.760><c> RAM</c><00:03:12.040><c> available</c><00:03:12.400><c> to</c><00:03:12.599><c> them</c><00:03:13.440><c> so</c><00:03:13.760><c> what</c><00:03:13.879><c> do</c><00:03:14.000><c> we</c><00:03:14.120><c> do</c>
+
+00:03:14.390 --> 00:03:14.400 align:start position:0%
+f RAM available to them so what do we do
+ 
+
+00:03:14.400 --> 00:03:16.949 align:start position:0%
+f RAM available to them so what do we do
+here<00:03:15.040><c> well</c><00:03:15.319><c> quantization</c><00:03:16.239><c> actually</c><00:03:16.519><c> offers</c><00:03:16.799><c> a</c>
+
+00:03:16.949 --> 00:03:16.959 align:start position:0%
+here well quantization actually offers a
+ 
+
+00:03:16.959 --> 00:03:19.990 align:start position:0%
+here well quantization actually offers a
+solution<00:03:17.920><c> because</c><00:03:18.200><c> quantization</c><00:03:18.959><c> asks</c><00:03:19.640><c> do</c><00:03:19.799><c> we</c>
+
+00:03:19.990 --> 00:03:20.000 align:start position:0%
+solution because quantization asks do we
+ 
+
+00:03:20.000 --> 00:03:22.110 align:start position:0%
+solution because quantization asks do we
+really<00:03:20.239><c> need</c><00:03:20.560><c> all</c><00:03:20.720><c> of</c><00:03:20.840><c> that</c><00:03:21.040><c> Precision</c><00:03:22.000><c> you</c>
+
+00:03:22.110 --> 00:03:22.120 align:start position:0%
+really need all of that Precision you
+ 
+
+00:03:22.120 --> 00:03:24.229 align:start position:0%
+really need all of that Precision you
+can<00:03:22.280><c> imagine</c><00:03:22.640><c> that</c><00:03:22.840><c> in</c><00:03:23.000><c> this</c><00:03:23.159><c> full</c><00:03:23.480><c> 32bit</c>
+
+00:03:24.229 --> 00:03:24.239 align:start position:0%
+can imagine that in this full 32bit
+ 
+
+00:03:24.239 --> 00:03:25.869 align:start position:0%
+can imagine that in this full 32bit
+version<00:03:24.560><c> of</c><00:03:24.680><c> the</c><00:03:24.799><c> model</c><00:03:25.360><c> we</c><00:03:25.480><c> can</c><00:03:25.640><c> have</c><00:03:25.720><c> a</c>
+
+00:03:25.869 --> 00:03:25.879 align:start position:0%
+version of the model we can have a
+ 
+
+00:03:25.879 --> 00:03:27.589 align:start position:0%
+version of the model we can have a
+weight<00:03:26.239><c> that</c><00:03:26.400><c> storess</c>
+
+00:03:27.589 --> 00:03:27.599 align:start position:0%
+weight that storess
+ 
+
+00:03:27.599 --> 00:03:32.990 align:start position:0%
+weight that storess
+1.92<00:03:28.599><c> 635</c><00:03:29.879><c> 7</c><00:03:30.200><c> 9</c><00:03:30.560><c> etc</c><00:03:31.000><c> etc</c><00:03:31.519><c> very</c><00:03:31.799><c> precise</c><00:03:32.159><c> number</c>
+
+00:03:32.990 --> 00:03:33.000 align:start position:0%
+1.92 635 7 9 etc etc very precise number
+ 
+
+00:03:33.000 --> 00:03:34.869 align:start position:0%
+1.92 635 7 9 etc etc very precise number
+but<00:03:33.159><c> what</c><00:03:33.280><c> if</c><00:03:33.400><c> we</c><00:03:33.519><c> were</c><00:03:33.720><c> to</c><00:03:33.959><c> just</c><00:03:34.360><c> round</c><00:03:34.720><c> that</c>
+
+00:03:34.869 --> 00:03:34.879 align:start position:0%
+but what if we were to just round that
+ 
+
+00:03:34.879 --> 00:03:38.630 align:start position:0%
+but what if we were to just round that
+number<00:03:35.200><c> up</c><00:03:35.519><c> to</c><00:03:35.720><c> a</c><00:03:36.040><c> two</c><00:03:37.040><c> well</c><00:03:37.319><c> we</c><00:03:37.480><c> can</c><00:03:37.760><c> indeed</c>
+
+00:03:38.630 --> 00:03:38.640 align:start position:0%
+number up to a two well we can indeed
+ 
+
+00:03:38.640 --> 00:03:41.270 align:start position:0%
+number up to a two well we can indeed
+change<00:03:39.080><c> the</c><00:03:39.280><c> numbers</c><00:03:39.840><c> and</c><00:03:40.080><c> cut</c><00:03:40.360><c> off</c><00:03:40.799><c> decimals</c>
+
+00:03:41.270 --> 00:03:41.280 align:start position:0%
+change the numbers and cut off decimals
+ 
+
+00:03:41.280 --> 00:03:43.149 align:start position:0%
+change the numbers and cut off decimals
+or<00:03:41.560><c> indeed</c><00:03:41.840><c> just</c><00:03:42.000><c> round</c><00:03:42.280><c> them</c><00:03:42.439><c> up</c><00:03:42.799><c> to</c><00:03:43.000><c> the</c>
+
+00:03:43.149 --> 00:03:43.159 align:start position:0%
+or indeed just round them up to the
+ 
+
+00:03:43.159 --> 00:03:45.589 align:start position:0%
+or indeed just round them up to the
+nearest<00:03:43.519><c> full</c><00:03:43.840><c> number</c><00:03:44.840><c> depending</c><00:03:45.239><c> on</c><00:03:45.439><c> how</c>
+
+00:03:45.589 --> 00:03:45.599 align:start position:0%
+nearest full number depending on how
+ 
+
+00:03:45.599 --> 00:03:48.350 align:start position:0%
+nearest full number depending on how
+much<00:03:45.879><c> we</c><00:03:46.000><c> want</c><00:03:46.120><c> to</c><00:03:46.280><c> quantize</c><00:03:46.920><c> the</c><00:03:47.040><c> model</c><00:03:47.920><c> so</c><00:03:48.239><c> we</c>
+
+00:03:48.350 --> 00:03:48.360 align:start position:0%
+much we want to quantize the model so we
+ 
+
+00:03:48.360 --> 00:03:50.589 align:start position:0%
+much we want to quantize the model so we
+can<00:03:48.519><c> for</c><00:03:48.720><c> example</c><00:03:49.040><c> quantize</c><00:03:49.519><c> it</c><00:03:49.599><c> to</c><00:03:49.799><c> 16</c><00:03:50.159><c> bits</c>
+
+00:03:50.589 --> 00:03:50.599 align:start position:0%
+can for example quantize it to 16 bits
+ 
+
+00:03:50.599 --> 00:03:52.550 align:start position:0%
+can for example quantize it to 16 bits
+which<00:03:50.720><c> will</c><00:03:50.879><c> cut</c><00:03:51.080><c> the</c><00:03:51.200><c> size</c><00:03:51.400><c> in</c><00:03:51.599><c> half</c><00:03:52.239><c> eight</c>
+
+00:03:52.550 --> 00:03:52.560 align:start position:0%
+which will cut the size in half eight
+ 
+
+00:03:52.560 --> 00:03:55.350 align:start position:0%
+which will cut the size in half eight
+bits<00:03:52.959><c> to</c><00:03:53.159><c> cut</c><00:03:53.319><c> the</c><00:03:53.439><c> size</c><00:03:53.760><c> to</c><00:03:53.879><c> a</c><00:03:54.000><c> quarter</c><00:03:54.760><c> or</c><00:03:55.200><c> all</c>
+
+00:03:55.350 --> 00:03:55.360 align:start position:0%
+bits to cut the size to a quarter or all
+ 
+
+00:03:55.360 --> 00:03:57.750 align:start position:0%
+bits to cut the size to a quarter or all
+the<00:03:55.480><c> way</c><00:03:55.640><c> down</c><00:03:55.840><c> to</c><00:03:56.040><c> four</c><00:03:56.519><c> bits</c><00:03:57.200><c> which</c><00:03:57.439><c> cuts</c><00:03:57.640><c> it</c>
+
+00:03:57.750 --> 00:03:57.760 align:start position:0%
+the way down to four bits which cuts it
+ 
+
+00:03:57.760 --> 00:04:01.190 align:start position:0%
+the way down to four bits which cuts it
+to<00:03:58.040><c> just</c><00:03:58.439><c> 1/8</c><00:03:59.280><c> of</c><00:03:59.360><c> the</c><00:03:59.439><c> original</c><00:03:59.959><c> model</c><00:04:00.280><c> size</c>
+
+00:04:01.190 --> 00:04:01.200 align:start position:0%
+to just 1/8 of the original model size
+ 
+
+00:04:01.200 --> 00:04:04.429 align:start position:0%
+to just 1/8 of the original model size
+and<00:04:01.360><c> that</c><00:04:01.480><c> shrinks</c><00:04:02.040><c> a</c><00:04:02.159><c> model</c><00:04:02.400><c> like</c><00:04:02.560><c> M</c><00:04:03.079><c> 7B</c><00:04:04.079><c> down</c>
+
+00:04:04.429 --> 00:04:04.439 align:start position:0%
+and that shrinks a model like M 7B down
+ 
+
+00:04:04.439 --> 00:04:08.589 align:start position:0%
+and that shrinks a model like M 7B down
+from<00:04:04.799><c> 27</c><00:04:05.360><c> GB</c><00:04:05.920><c> to</c><00:04:06.159><c> Just</c><00:04:06.319><c> 4</c><00:04:06.760><c> GB</c><00:04:07.760><c> and</c><00:04:07.959><c> suddenly</c><00:04:08.480><c> it</c>
+
+00:04:08.589 --> 00:04:08.599 align:start position:0%
+from 27 GB to Just 4 GB and suddenly it
+ 
+
+00:04:08.599 --> 00:04:11.190 align:start position:0%
+from 27 GB to Just 4 GB and suddenly it
+becomes<00:04:08.959><c> runnable</c><00:04:09.799><c> on</c><00:04:10.159><c> almost</c><00:04:10.560><c> every</c><00:04:10.840><c> modern</c>
+
+00:04:11.190 --> 00:04:11.200 align:start position:0%
+becomes runnable on almost every modern
+ 
+
+00:04:11.200 --> 00:04:13.509 align:start position:0%
+becomes runnable on almost every modern
+GPU<00:04:12.159><c> which</c><00:04:12.280><c> is</c><00:04:12.519><c> great</c><00:04:12.879><c> because</c><00:04:13.040><c> it</c><00:04:13.159><c> means</c><00:04:13.360><c> that</c>
+
+00:04:13.509 --> 00:04:13.519 align:start position:0%
+GPU which is great because it means that
+ 
+
+00:04:13.519 --> 00:04:16.229 align:start position:0%
+GPU which is great because it means that
+consumers<00:04:14.000><c> can</c><00:04:14.120><c> run</c><00:04:14.360><c> these</c><00:04:14.519><c> models</c><00:04:15.239><c> locally</c>
+
+00:04:16.229 --> 00:04:16.239 align:start position:0%
+consumers can run these models locally
+ 
+
+00:04:16.239 --> 00:04:19.229 align:start position:0%
+consumers can run these models locally
+now<00:04:16.720><c> reducing</c><00:04:17.320><c> from</c><00:04:17.680><c> 32</c><00:04:18.239><c> bit</c><00:04:18.479><c> numbers</c><00:04:18.799><c> to</c><00:04:19.000><c> 4</c>
+
+00:04:19.229 --> 00:04:19.239 align:start position:0%
+now reducing from 32 bit numbers to 4
+ 
+
+00:04:19.239 --> 00:04:21.430 align:start position:0%
+now reducing from 32 bit numbers to 4
+bit<00:04:19.479><c> number</c><00:04:19.759><c> Precision</c><00:04:20.600><c> does</c><00:04:20.880><c> mean</c><00:04:21.160><c> that</c><00:04:21.280><c> you</c>
+
+00:04:21.430 --> 00:04:21.440 align:start position:0%
+bit number Precision does mean that you
+ 
+
+00:04:21.440 --> 00:04:24.350 align:start position:0%
+bit number Precision does mean that you
+have<00:04:21.639><c> a</c><00:04:22.160><c> trade-off</c><00:04:23.160><c> because</c><00:04:23.800><c> you</c><00:04:24.000><c> do</c><00:04:24.199><c> have</c>
+
+00:04:24.350 --> 00:04:24.360 align:start position:0%
+have a trade-off because you do have
+ 
+
+00:04:24.360 --> 00:04:26.629 align:start position:0%
+have a trade-off because you do have
+lower<00:04:24.720><c> Precision</c><00:04:25.560><c> after</c><00:04:25.840><c> all</c><00:04:26.000><c> you're</c><00:04:26.240><c> taking</c>
+
+00:04:26.629 --> 00:04:26.639 align:start position:0%
+lower Precision after all you're taking
+ 
+
+00:04:26.639 --> 00:04:28.590 align:start position:0%
+lower Precision after all you're taking
+out<00:04:27.120><c> detail</c><00:04:27.560><c> that</c><00:04:27.680><c> was</c><00:04:27.880><c> originally</c><00:04:28.320><c> in</c><00:04:28.400><c> the</c>
+
+00:04:28.590 --> 00:04:28.600 align:start position:0%
+out detail that was originally in the
+ 
+
+00:04:28.600 --> 00:04:30.749 align:start position:0%
+out detail that was originally in the
+model<00:04:29.400><c> it's</c><00:04:29.560><c> kind</c><00:04:29.720><c> kind</c><00:04:29.840><c> of</c><00:04:29.960><c> like</c><00:04:30.120><c> converting</c>
+
+00:04:30.749 --> 00:04:30.759 align:start position:0%
+model it's kind kind of like converting
+ 
+
+00:04:30.759 --> 00:04:33.070 align:start position:0%
+model it's kind kind of like converting
+a<00:04:31.039><c> high</c><00:04:31.240><c> resolution</c><00:04:31.759><c> photo</c><00:04:32.199><c> to</c><00:04:32.400><c> a</c><00:04:32.520><c> lower</c>
+
+00:04:33.070 --> 00:04:33.080 align:start position:0%
+a high resolution photo to a lower
+ 
+
+00:04:33.080 --> 00:04:35.870 align:start position:0%
+a high resolution photo to a lower
+resolution<00:04:34.080><c> we</c><00:04:34.199><c> lose</c><00:04:34.479><c> some</c><00:04:34.720><c> details</c><00:04:35.600><c> but</c><00:04:35.720><c> to</c>
+
+00:04:35.870 --> 00:04:35.880 align:start position:0%
+resolution we lose some details but to
+ 
+
+00:04:35.880 --> 00:04:38.230 align:start position:0%
+resolution we lose some details but to
+be<00:04:36.039><c> fair</c><00:04:36.440><c> the</c><00:04:36.600><c> overall</c><00:04:37.080><c> picture</c><00:04:37.759><c> remains</c>
+
+00:04:38.230 --> 00:04:38.240 align:start position:0%
+be fair the overall picture remains
+ 
+
+00:04:38.240 --> 00:04:40.230 align:start position:0%
+be fair the overall picture remains
+recognizable<00:04:39.240><c> and</c><00:04:39.400><c> research</c><00:04:39.800><c> shows</c><00:04:40.120><c> that</c>
+
+00:04:40.230 --> 00:04:40.240 align:start position:0%
+recognizable and research shows that
+ 
+
+00:04:40.240 --> 00:04:42.150 align:start position:0%
+recognizable and research shows that
+when<00:04:40.360><c> you're</c><00:04:40.560><c> simplifying</c><00:04:41.080><c> these</c><00:04:41.280><c> models</c><00:04:42.000><c> the</c>
+
+00:04:42.150 --> 00:04:42.160 align:start position:0%
+when you're simplifying these models the
+ 
+
+00:04:42.160 --> 00:04:44.390 align:start position:0%
+when you're simplifying these models the
+accuracy<00:04:42.560><c> loss</c><00:04:42.840><c> is</c><00:04:43.080><c> actually</c><00:04:43.320><c> not</c><00:04:43.560><c> that</c><00:04:43.759><c> bad</c>
+
+00:04:44.390 --> 00:04:44.400 align:start position:0%
+accuracy loss is actually not that bad
+ 
+
+00:04:44.400 --> 00:04:47.230 align:start position:0%
+accuracy loss is actually not that bad
+the<00:04:44.520><c> model</c><00:04:44.800><c> might</c><00:04:45.000><c> perform</c><00:04:45.680><c> one</c><00:04:45.840><c> to</c><00:04:46.000><c> 2%</c><00:04:46.639><c> worse</c>
+
+00:04:47.230 --> 00:04:47.240 align:start position:0%
+the model might perform one to 2% worse
+ 
+
+00:04:47.240 --> 00:04:48.830 align:start position:0%
+the model might perform one to 2% worse
+but<00:04:47.400><c> that's</c><00:04:47.600><c> definitely</c><00:04:47.919><c> worth</c><00:04:48.120><c> the</c><00:04:48.280><c> tradeoff</c>
+
+00:04:48.830 --> 00:04:48.840 align:start position:0%
+but that's definitely worth the tradeoff
+ 
+
+00:04:48.840 --> 00:04:50.830 align:start position:0%
+but that's definitely worth the tradeoff
+considering<00:04:49.280><c> you</c><00:04:49.400><c> can</c><00:04:49.600><c> actually</c><00:04:49.840><c> run</c><00:04:50.479><c> much</c>
+
+00:04:50.830 --> 00:04:50.840 align:start position:0%
+considering you can actually run much
+ 
+
+00:04:50.840 --> 00:04:53.950 align:start position:0%
+considering you can actually run much
+stronger<00:04:51.160><c> models</c><00:04:51.880><c> on</c><00:04:52.080><c> your</c><00:04:52.240><c> own</c><00:04:52.759><c> Hardware</c><00:04:53.759><c> so</c>
+
+00:04:53.950 --> 00:04:53.960 align:start position:0%
+stronger models on your own Hardware so
+ 
+
+00:04:53.960 --> 00:04:56.189 align:start position:0%
+stronger models on your own Hardware so
+quantization<00:04:54.600><c> has</c><00:04:54.759><c> really</c><00:04:54.960><c> transformed</c><00:04:55.520><c> AI</c>
+
+00:04:56.189 --> 00:04:56.199 align:start position:0%
+quantization has really transformed AI
+ 
+
+00:04:56.199 --> 00:04:58.150 align:start position:0%
+quantization has really transformed AI
+from<00:04:56.360><c> an</c><00:04:56.600><c> exclusive</c><00:04:57.199><c> technology</c><00:04:57.680><c> that</c><00:04:57.880><c> only</c>
+
+00:04:58.150 --> 00:04:58.160 align:start position:0%
+from an exclusive technology that only
+ 
+
+00:04:58.160 --> 00:05:00.629 align:start position:0%
+from an exclusive technology that only
+works<00:04:58.560><c> in</c><00:04:58.759><c> data</c><00:04:59.039><c> centers</c><00:04:59.880><c> to</c><00:05:00.080><c> something</c><00:05:00.400><c> that</c>
+
+00:05:00.629 --> 00:05:00.639 align:start position:0%
+works in data centers to something that
+ 
+
+00:05:00.639 --> 00:05:03.670 align:start position:0%
+works in data centers to something that
+anyone<00:05:01.039><c> can</c><00:05:01.680><c> use</c><00:05:02.680><c> if</c><00:05:02.800><c> you</c><00:05:02.919><c> want</c><00:05:03.039><c> to</c><00:05:03.199><c> learn</c><00:05:03.400><c> more</c>
+
+00:05:03.670 --> 00:05:03.680 align:start position:0%
+anyone can use if you want to learn more
+ 
+
+00:05:03.680 --> 00:05:05.830 align:start position:0%
+anyone can use if you want to learn more
+real<00:05:04.000><c> AI</c><00:05:04.280><c> engineering</c><00:05:05.160><c> check</c><00:05:05.360><c> out</c><00:05:05.560><c> the</c><00:05:05.680><c> link</c>
+
+00:05:05.830 --> 00:05:05.840 align:start position:0%
+real AI engineering check out the link
+ 
+
+00:05:05.840 --> 00:05:07.270 align:start position:0%
+real AI engineering check out the link
+in<00:05:05.919><c> the</c><00:05:06.080><c> description</c><00:05:06.520><c> below</c><00:05:06.919><c> and</c><00:05:07.039><c> you</c><00:05:07.120><c> can</c>
+
+00:05:07.270 --> 00:05:07.280 align:start position:0%
+in the description below and you can
+ 
+
+00:05:07.280 --> 00:05:09.469 align:start position:0%
+in the description below and you can
+join<00:05:07.600><c> my</c><00:05:07.840><c> AI</c><00:05:08.120><c> engineering</c><00:05:08.600><c> community</c><00:05:09.320><c> where</c>
+
+00:05:09.469 --> 00:05:09.479 align:start position:0%
+join my AI engineering community where
+ 
+
+00:05:09.479 --> 00:05:11.070 align:start position:0%
+join my AI engineering community where
+you<00:05:09.560><c> can</c><00:05:09.680><c> learn</c><00:05:09.960><c> how</c><00:05:10.039><c> to</c><00:05:10.199><c> build</c><00:05:10.479><c> real</c><00:05:10.759><c> AI</c>
+
+00:05:11.070 --> 00:05:11.080 align:start position:0%
+you can learn how to build real AI
+ 
+
+00:05:11.080 --> 00:05:13.070 align:start position:0%
+you can learn how to build real AI
+systems<00:05:11.680><c> from</c><00:05:11.960><c> beginning</c><00:05:12.520><c> all</c><00:05:12.680><c> the</c><00:05:12.759><c> way</c><00:05:12.880><c> to</c>
+
+00:05:13.070 --> 00:05:13.080 align:start position:0%
+systems from beginning all the way to
+ 
+
+00:05:13.080 --> 00:05:16.639 align:start position:0%
+systems from beginning all the way to
+end<00:05:13.639><c> I'll</c><00:05:13.800><c> see</c><00:05:13.960><c> you</c><00:05:14.160><c> there</c>
+

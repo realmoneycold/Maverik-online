@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.ecc_repo/
+.skillopt_repo/
+scratch/
+graphify-out/
+Project_X/
+searxng_docker/
+.DS_Store
