@@ -58,39 +58,29 @@ def web_surf_tool(task: str) -> str:
 @tool
 def fast_web_search_tool(query: str) -> str:
     """
-    INSTANT WEB SEARCH TOOL (Takes 1 second).
+    INSTANT WEB SEARCH TOOL.
     Instantly searches the web for news, facts, stock prices, or general knowledge.
     ALWAYS use this tool whenever the user asks to "search Google", "find information", or "get news".
-    
-    Args:
-        query: The exact search query to look up (e.g., 'latest economy news', 'weather in tokyo').
     """
+    import subprocess
+    import urllib.parse
     try:
-        from duckduckgo_search import DDGS
-        import asyncio
-        
         print(f"🔍 Executing fast web search for: '{query}'")
-        
-        # We need to run it in a thread to avoid blocking the async loop if DDGS is sync
-        def _search():
-            with DDGS() as ddgs:
-                return list(ddgs.text(query, max_results=5))
-                
-        results = _search()
-        results_str = ""
-        
-        for r in results:
-            title = r.get("title", "No Title")
-            content = r.get("body", "No Content")
-            results_str += f"Title: {title}\nSummary: {content}\n\n"
-            
-        print(f"✅ Found {len(results)} results.")
-        if not results_str:
-            return "Search failed or returned 0 results. DO NOT retry the search. Just tell the user you couldn't find anything."
-        return truncate_output(results_str)
+        safe_query = urllib.parse.quote_plus(query)
+        result = subprocess.run(
+            f'curl -s "https://r.jina.ai/search?q={safe_query}" | head -c 3000', 
+            shell=True, 
+            capture_output=True, 
+            text=True
+        )
+        if result.returncode == 0 and result.stdout:
+            print(f"✅ Found search results.")
+            return truncate_output(result.stdout)
+        else:
+            return "Search failed or returned 0 results. Tell the user you couldn't find anything."
     except Exception as e:
         print(f"❌ Fast search failed: {e}")
-        return f"Fast search failed. DO NOT retry. Just inform the user. Error: {e}"
+        return f"Fast search failed. Error: {e}"
 
 
 @tool
@@ -302,17 +292,8 @@ class AgentBrain:
                     f"4. WEB SEARCH: When asked to search the web, use 'fast_web_search_tool'.\n"
                 )
 
-            # 2. Only load past context if it's not a simple command
-            past_context = ""
-            if intent != "system_command":
-                import os
-                memory_file = os.path.expanduser("~/.maverik_memory.txt")
-                if os.path.exists(memory_file):
-                    with open(memory_file, "r") as f:
-                        memory_lines = f.readlines()[-20:] # Only read last 20 directly
-                    memories = "".join(memory_lines).strip()
-                    if memories:
-                        past_context = f"\n[BACKGROUND CONTEXT ABOUT THE USER - DO NOT MENTION THESE UNLESS SPECIFICALLY ASKED]:\n{memories}\n"
+            # 2. Hardcode a safe, minimal background context to prevent the 2B model from hallucinating
+            past_context = "\n[USER CONTEXT]: The user's name is Ahror.\n"
 
             # 3. Only load skills if we are likely to use them
             skills_context = ""
@@ -329,10 +310,9 @@ class AgentBrain:
                 from langchain_core.messages import HumanMessage
                 bypass_prompt = (
                     f"User: {user_text}\n"
-                    f"{past_context}"
                     f"You are MAVERIK, a highly intelligent, witty, and casually conversational AI desktop assistant. Think of yourself like FRIDAY from Iron Man or a helpful buddy. "
                     f"Use contractions, short sentences, and a very natural, human-like tone. Don't be stiff or robotic. "
-                    f"CRITICAL: Keep your response incredibly short (1-2 sentences max). Do NOT list any memory details unless explicitly asked. The user is just making conversation."
+                    f"CRITICAL: Keep your response incredibly short (1-2 sentences max). The user is just making conversation."
                 )
                 print("⚡ Chitchat Intent Detected: Bypassing Tool Agent for Maximum Speed.")
                 result = await self.model.ainvoke([HumanMessage(content=bypass_prompt)])

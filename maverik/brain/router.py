@@ -25,7 +25,12 @@ chitchat = Route(
         "goodnight maverik",
         "thank you maverik",
         "thank you so much",
-        "hey maverik, what's up?"
+        "hey maverik, what's up?",
+        "jarvis",
+        "hey jarvis",
+        "hello jarvis",
+        "maverik",
+        "hey"
     ],
     score_threshold=0.5
 )

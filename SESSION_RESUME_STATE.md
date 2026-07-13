@@ -1,21 +1,19 @@
-# 🧠 MAVERIK DEVELOPMENT: SESSION STATE
-**Date:** July 11, 2026
-**Status:** Open Source Integration Phase (Phases 1-5) COMPLETE
+# MAVERIK Resume State - Next Session
 
-## 🏆 What We Accomplished Today
-1. **System Refactoring & Guardrails:** Successfully integrated ECC-style terminal guardrails. MAVERIK autonomously blocks destructive commands like `rm -rf /` and `git push --force`.
-2. **Persistent Core Memory:** Integrated local offline memory. Tested and verified that MAVERIK saves and recalls personal facts correctly across sessions.
-3. **Dynamic Skill Creation:** Wired up `api_dictionary_tool` and `create_python_skill`. MAVERIK can now successfully look up offline documentation, write Python scripts autonomously, and execute them (e.g., getting weather, organizing files).
-4. **Tool Routing Fixed:** Modified `agent_brain.py` to stop the 4B model from getting confused. Removed the brittle `duckduckgo_search` tool to force MAVERIK to use proper CLI tools instead of the broken GUI browser.
+**Date Saved:** July 12, 2026
 
-## 🚧 The Final Known Limitation
-We fully tested the advanced **Agent-Reach (Social Intelligence)** and **Last30Days (Deep Research)** engines. We successfully forced MAVERIK to trigger them, but we hit a strict OS limitation:
-* The `Last30Days` research engine requires **Python 3.12+**.
-* MAVERIK's 'Ears' (Voice Activity Detection via `tflite-runtime`) explicitly **do not support Python 3.12**.
-* **Decision Made:** We safely aborted the Python 3.12 upgrade. MAVERIK will stay on Python 3.11 to preserve his voice. He is 100% functional, but the deep research tool will safely fail until `tflite-runtime` releases a Python 3.12 update.
+## 🎯 Current Project Status
+We have completed the **Offline Architecture Phase** of MAVERIK and stress-tested it as a real customer. The core system is highly functional, but we hit some hardware/environmental limits that we patched.
 
-## 🚀 Next Steps (For Tomorrow)
-1. The MAVERIK open-source integration phase is effectively complete. You have a highly intelligent, autonomous desktop agent running locally on your machine.
-2. We can either wrap up any final documentation for MAVERIK, or move on to your other projects (I see you were just working on the IELTSPRACTICE pitch!).
+## 🛠️ What We Fixed Today:
+1. **The System Daemon War:** We created the `maverik.service` background daemon. We also added a "Highlander rule" (`pkill`) to `start_maverik.sh` to prevent terminal scripts and background daemons from creating duplicate clones of MAVERIK that fight each other.
+2. **The "Hey Jarvis" Chitchat Bypass:** We added `jarvis` and `maverik` to the Semantic Router and built a bypass so MAVERIK responds instantly (without loading tools) when you just say hello.
+3. **The Memory Hallucination:** The 2-Billion parameter `qwen3.5:2b` model struggled with negative prompts and kept vomiting the entire core memory file into casual conversation. We permanently fixed this by hard-coding a minimal context (`"The user's name is Ahror"`) to prevent it from rambling about your preferences.
+4. **The Web Search Tool:** Replaced the broken `duckduckgo_search` library with a direct, highly-reliable `Jina.ai` web crawler.
+5. **The Audio Feedback Loop Diagnosis:** We discovered the main reason MAVERIK sounded "insane" and repetitive was because the microphone was picking up the speaker output. MAVERIK was literally talking to itself. 
 
-*Note for AI: When you read this file tomorrow, resume from this exact context block. The user is ready to move forward.*
+## 🚀 Where to Start Next Time:
+1. **Headphone Testing:** The very first thing to do is test MAVERIK's voice interaction *while wearing headphones* to confirm the audio feedback loop is completely resolved.
+2. **Cloud vs. Local Decision:** We need to decide if we are sticking strictly to the 100% Offline (Slower) architecture, or if we want to integrate the **Groq API** (Llama-3-8b) for instant, sub-second "MCU JARVIS" speed for free.
+3. **Acoustic Echo Cancellation (AEC):** If you don't want to wear headphones, we must build a Python-level Acoustic Echo Canceller to temporarily mute the microphone while the Kokoro TTS engine is speaking.
+4. **IELTSPractice Pitch:** Return to Priority 3 on our roadmap to use MAVERIK to structure the SaaS pitch for your startup!

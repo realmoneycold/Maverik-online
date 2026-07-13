@@ -15,6 +15,9 @@ lsof -t -i:8000 | xargs -r kill -9 || true
 ./.venv/bin/python -m uvicorn maverik.dashboard.app:app --host 127.0.0.1 --port 8000 --log-level warning &
 
 echo "Starting MAVERIK Core Voice Agent..."
+# Kill any existing Voice Agent processes to prevent overlapping voices
+pkill -f ".venv/bin/python main.py" || true
+
 # Start the main AI process in the foreground
 # Using exec so the python process replaces the shell, making signals pass directly to it
 exec ./.venv/bin/python main.py
