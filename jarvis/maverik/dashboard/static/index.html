@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAVERIK Control Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-mesh">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+    </div>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar glass-panel">
+            <div class="logo">
+                <i class="fa-solid fa-brain glow-icon"></i>
+                <h2>MAVERIK</h2>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-tab="dashboard">
+                    <i class="fa-solid fa-chart-pie"></i> Dashboard
+                </a>
+                <a href="#" class="nav-item" data-tab="memory">
+                    <i class="fa-solid fa-memory"></i> Core Memory
+                </a>
+                <a href="#" class="nav-item" data-tab="skills">
+                    <i class="fa-solid fa-bolt"></i> Active Skills
+                </a>
+                <a href="#" class="nav-item" data-tab="actions">
+                    <i class="fa-solid fa-rocket"></i> Actions Center
+                </a>
+            </nav>
+            <div class="system-status">
+                <div class="status-indicator">
+                    <div class="pulse-dot"></div>
+                    <span id="brain-status">Brain: Online</span>
+                </div>
+                <div class="status-indicator">
+                    <div class="pulse-dot pulse-blue"></div>
+                    <span id="model-status">Model: qwen3.5:2b</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <h1>Control Center</h1>
+                <div class="header-actions">
+                    <button class="btn btn-primary"><i class="fa-solid fa-microphone"></i> Wake MAVERIK</button>
+                </div>
+            </header>
+
+            <!-- Dashboard Tab -->
+            <div id="tab-dashboard" class="tab-content active">
+                <div class="stats-grid">
+                    <div class="stat-card glass-panel fade-in" style="animation-delay: 0.1s">
+                        <div class="stat-icon"><i class="fa-solid fa-database"></i></div>
+                        <div class="stat-info">
+                            <h3>Memories Synced</h3>
+                            <p id="memory-count">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card glass-panel fade-in" style="animation-delay: 0.2s">
+                        <div class="stat-icon"><i class="fa-solid fa-code"></i></div>
+                        <div class="stat-info">
+                            <h3>Custom Skills</h3>
+                            <p id="skill-count">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card glass-panel fade-in" style="animation-delay: 0.3s">
+                        <div class="stat-icon"><i class="fa-solid fa-microchip"></i></div>
+                        <div class="stat-info">
+                            <h3>System VRAM</h3>
+                            <p id="vram-status">Zero-VRAM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="recent-activity glass-panel fade-in" style="animation-delay: 0.4s">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-bolt"></i> Agent Activity Stream</h2>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon blue"><i class="fa-solid fa-check"></i></div>
+                            <div class="activity-details">
+                                <p><strong>System Boot</strong></p>
+                                <span>MAVERIK initialized successfully.</span>
+                            </div>
+                            <div class="activity-time">Just now</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon purple"><i class="fa-solid fa-route"></i></div>
+                            <div class="activity-details">
+                                <p><strong>Semantic Router Loaded</strong></p>
+                                <span>Zero-latency intent matching is active.</span>
+                            </div>
+                            <div class="activity-time">1m ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Memory Tab -->
+            <div id="tab-memory" class="tab-content">
+                <div class="glass-panel full-height">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-memory"></i> Permanent Core Memory</h2>
+                        <button class="btn btn-outline" id="refresh-memory"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
+                    </div>
+                    <div class="memory-container" id="memory-list">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Tab -->
+            <div id="tab-skills" class="tab-content">
+                <div class="glass-panel full-height">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-code"></i> Autonomously Coded Skills</h2>
+                        <button class="btn btn-outline" id="refresh-skills"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
+                    </div>
+                    <div class="skills-grid" id="skills-list">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Actions Center Tab -->
+            <div id="tab-actions" class="tab-content">
+                <div class="glass-panel full-height">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-rocket"></i> Manual Overrides & Actions</h2>
+                    </div>
+                    <div class="actions-grid">
+                        <!-- Vision Capture -->
+                        <div class="action-card">
+                            <div class="action-icon purple"><i class="fa-solid fa-eye"></i></div>
+                            <h3>Vision Capture</h3>
+                            <p>Command LLaVA to take a screenshot and analyze the desktop.</p>
+                            <input type="text" id="vision-input" placeholder="e.g. Describe my screen" class="action-input">
+                            <button class="btn btn-primary action-btn" onclick="triggerAction('vision')">Capture Screen</button>
+                        </div>
+                        
+                        <!-- Deep Research -->
+                        <div class="action-card">
+                            <div class="action-icon blue"><i class="fa-solid fa-microscope"></i></div>
+                            <h3>Deep Research</h3>
+                            <p>Run a Last30Days intelligence report on any given topic.</p>
+                            <input type="text" id="research-input" placeholder="e.g. OpenAI recent news" class="action-input">
+                            <button class="btn btn-primary action-btn" onclick="triggerAction('research')">Start Research</button>
+                        </div>
+
+                        <!-- Graphify Scan -->
+                        <div class="action-card">
+                            <div class="action-icon green"><i class="fa-solid fa-network-wired"></i></div>
+                            <h3>Graphify Query</h3>
+                            <p>Query the codebase knowledge graph directly.</p>
+                            <input type="text" id="graphify-input" placeholder="e.g. Where is AgentBrain?" class="action-input">
+                            <button class="btn btn-primary action-btn" onclick="triggerAction('graphify')">Query Graph</button>
+                        </div>
+                    </div>
+                    
+                    <div class="action-result-container mt-4">
+                        <h3>Action Output Log</h3>
+                        <div id="action-output" class="terminal-output">Waiting for commands...</div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
