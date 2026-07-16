@@ -17,11 +17,36 @@ log = logging.getLogger("jarvis.screen")
 
 
 async def get_active_windows() -> list[dict]:
-    """Get list of visible windows with app name, window title, and position.
+    """Get list of visible windows with app name, window title, and position."""
+    import sys
+    if sys.platform == "win32":
+        try:
+            script = "Get-Process | Where-Object {$_.MainWindowTitle} | Select-Object Name, MainWindowTitle | ConvertTo-Json"
+            proc = await asyncio.create_subprocess_exec(
+                "powershell", "-NoProfile", "-Command", script,
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE,
+            )
+            stdout, _ = await asyncio.wait_for(proc.communicate(), timeout=5)
+            if proc.returncode != 0:
+                return []
+            data = json.loads(stdout.decode())
+            if isinstance(data, dict):
+                data = [data]
+            windows = []
+            for item in data:
+                windows.append({
+                    "app": item.get("Name", ""),
+                    "title": item.get("MainWindowTitle", ""),
+                    "frontmost": False
+                })
+            if windows:
+                windows[0]["frontmost"] = True
+            return windows
+        except Exception as e:
+            log.warning(f"get_active_windows error: {e}")
+            return []
 
-    Uses AppleScript + System Events to enumerate windows.
-    Returns list of {"app": str, "title": str, "frontmost": bool}.
-    """
     # Use a simpler approach that's more permission-friendly
     script = """
 set windowList to ""
@@ -80,6 +105,11 @@ return windowList
 
 async def get_running_apps() -> list[str]:
     """Get list of running application names (visible only)."""
+    import sys
+    if sys.platform == "win32":
+        windows = await get_active_windows()
+        return list(set([w["app"] for w in windows]))
+
     script = """
 tell application "System Events"
     set appNames to name of every application process whose visible is true
@@ -106,14 +136,20 @@ end tell
 
 
 async def take_screenshot(display_only: bool = True) -> str | None:
-    """Take a screenshot and return base64-encoded PNG.
+    """Take a screenshot and return base64-encoded PNG."""
+    import sys
+    if sys.platform == "win32":
+        try:
+            from PIL import ImageGrab
+            from io import BytesIO
+            img = ImageGrab.grab(all_screens=not display_only)
+            buffered = BytesIO()
+            img.save(buffered, format="PNG")
+            return base64.b64encode(buffered.getvalue()).decode()
+        except Exception as e:
+            log.warning(f"Screenshot error: {e}")
+            return None
 
-    Args:
-        display_only: If True, capture main display only. If False, all displays.
-
-    Returns:
-        Base64-encoded PNG string, or None on failure.
-    """
     with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as f:
         tmp_path = f.name
 

@@ -4,7 +4,7 @@ import logging
 
 from vocode.streaming.streaming_conversation import StreamingConversation
 from vocode.streaming.input_device.microphone_input import MicrophoneInput
-from maverik.audio.aplay_output import AplayOutputDevice
+from vocode.streaming.output_device.speaker_output import SpeakerOutput
 from vocode.streaming.models.agent import AgentConfig
 from vocode.streaming.models.message import BaseMessage
 from vocode.streaming.agent.base_agent import RespondAgent, GeneratedResponse
@@ -55,8 +55,8 @@ async def run_vocode_pipeline():
     print("🎙️ Initializing Audio Devices...")
     # Whisper STRICTLY requires 16000 Hz audio.
     microphone_input = MicrophoneInput.from_default_device(sampling_rate=16000)
-    # Kokoro STRICTLY outputs 24000 Hz audio. We use native Linux aplay to bypass sounddevice bugs!
-    speaker_output = AplayOutputDevice(sampling_rate=24000)
+    # Kokoro STRICTLY outputs 24000 Hz audio. We use native SpeakerOutput for Windows support.
+    speaker_output = SpeakerOutput.from_default_device(sampling_rate=24000)
     
     print("🎙️ Loading Offline Transcriber (Whisper)...")
     transcriber = LocalWhisperTranscriber(

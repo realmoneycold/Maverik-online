@@ -43,3 +43,4 @@ duckduckgo-search>=6.0.0
 
 # Vector Database (Deep Memory)
 chromadb>=0.4.0
+pillow>=10.0.0

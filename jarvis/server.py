@@ -32,7 +32,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import Optional
 
-import anthropic
+# import anthropic
+from gemini_adapter import AsyncAnthropic as _AsyncAnthropic
 import httpx
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
@@ -473,19 +474,29 @@ class ClaudeTaskManager:
 
         # Open Terminal.app with claude running in the project directory
         skip_flag = " --dangerously-skip-permissions" if _SKIP_PERMISSIONS else ""
-        escaped_work_dir = applescript_escape(work_dir)
-        applescript = f'''
-        tell application "Terminal"
-            activate
-            set newTab to do script "cd {escaped_work_dir} && cat .jarvis_prompt.md | claude -p{skip_flag} | tee .jarvis_output.txt; echo '\\n--- JARVIS TASK COMPLETE ---'"
-        end tell
-        '''
+        import sys
+        if sys.platform == "win32":
+            # Windows: start a new command prompt
+            cmd = f'start "JARVIS Task" cmd.exe /c "cd /d {work_dir} & type .jarvis_prompt.md | claude -p{skip_flag} > .jarvis_output.txt & echo. & echo --- JARVIS TASK COMPLETE --- & exit"'
+            process = await asyncio.create_subprocess_shell(
+                cmd,
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE,
+            )
+        else:
+            escaped_work_dir = applescript_escape(work_dir)
+            applescript = f'''
+            tell application "Terminal"
+                activate
+                set newTab to do script "cd {escaped_work_dir} && cat .jarvis_prompt.md | claude -p{skip_flag} | tee .jarvis_output.txt; echo '\\n--- JARVIS TASK COMPLETE ---'"
+            end tell
+            '''
 
-        process = await asyncio.create_subprocess_exec(
-            "osascript", "-e", applescript,
-            stdout=asyncio.subprocess.PIPE,
-            stderr=asyncio.subprocess.PIPE,
-        )
+            process = await asyncio.create_subprocess_exec(
+                "osascript", "-e", applescript,
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE,
+            )
         await process.communicate()
         task.pid = process.pid
 
@@ -718,7 +729,7 @@ def apply_speech_corrections(text: str) -> str:
 # LLM Intent Classifier (replaces keyword-based action detection)
 # ---------------------------------------------------------------------------
 
-async def classify_intent(text: str, client: anthropic.AsyncAnthropic) -> dict:
+async def classify_intent(text: str, client: _AsyncAnthropic) -> dict:
     """Classify every user message using Haiku LLM.
 
     Returns: {"action": "open_terminal|browse|build|chat", "target": "description"}
@@ -1006,6 +1017,11 @@ async def _execute_research(target: str, ws=None):
 
 async def _focus_terminal_window(project_name: str):
     """Bring a Terminal window matching the project name to front."""
+    import sys
+    if sys.platform == "win32":
+        # On Windows, bringing a window to front requires ctypes or pywin32, skipping for now to prevent crashes.
+        return
+
     escaped = applescript_escape(project_name)
     script = f'''
 tell application "Terminal"
@@ -1239,7 +1255,7 @@ async def synthesize_speech(text: str) -> Optional[bytes]:
 
 async def generate_response(
     text: str,
-    client: anthropic.AsyncAnthropic,
+    client: _AsyncAnthropic,
     task_mgr: ClaudeTaskManager,
     projects: list[dict],
     conversation_history: list[dict],
@@ -1322,7 +1338,7 @@ async def generate_response(
 
 # Shared state
 task_manager = ClaudeTaskManager(max_concurrent=3)
-anthropic_client: Optional[anthropic.AsyncAnthropic] = None
+anthropic_client: Optional[_AsyncAnthropic] = None
 cached_projects: list[dict] = []
 recently_built: list[dict] = []  # [{"name": str, "path": str, "time": float}]
 _last_research_results: list[dict] = []  # Store last DDG search results for "pull that up" browsing
@@ -1433,8 +1449,30 @@ def _refresh_context_sync():
             try:
                 # Screen — fast
                 try:
-                    proc = __import__("subprocess").run(
-                        ["osascript", "-e", '''
+                    import sys
+                    if sys.platform == "win32":
+                        proc = __import__("subprocess").run(
+                            ["powershell", "-NoProfile", "-Command", "Get-Process | Where-Object {$_.MainWindowTitle} | Select-Object Name, MainWindowTitle | ConvertTo-Json"],
+                            capture_output=True, text=True, timeout=5
+                        )
+                        if proc.returncode == 0 and proc.stdout.strip():
+                            import json
+                            data = json.loads(proc.stdout.strip())
+                            if isinstance(data, dict):
+                                data = [data]
+                            windows = []
+                            for item in data:
+                                windows.append({
+                                    "app": item.get("Name", ""),
+                                    "title": item.get("MainWindowTitle", ""),
+                                    "frontmost": False
+                                })
+                            if windows:
+                                windows[0]["frontmost"] = True
+                                _ctx_cache["screen"] = format_windows_for_context(windows)
+                    else:
+                        proc = __import__("subprocess").run(
+                            ["osascript", "-e", '''
 set windowList to ""
 tell application "System Events"
     set frontApp to name of first application process whose frontmost is true
@@ -1458,20 +1496,20 @@ tell application "System Events"
 end tell
 return windowList
 '''],
-                        capture_output=True, text=True, timeout=5
-                    )
-                    if proc.returncode == 0 and proc.stdout.strip():
-                        windows = []
-                        for line in proc.stdout.strip().split("\n"):
-                            parts = line.strip().split("|||")
-                            if len(parts) >= 3:
-                                windows.append({
-                                    "app": parts[0].strip(),
-                                    "title": parts[1].strip(),
-                                    "frontmost": parts[2].strip().lower() == "true",
-                                })
-                        if windows:
-                            _ctx_cache["screen"] = format_windows_for_context(windows)
+                            capture_output=True, text=True, timeout=5
+                        )
+                        if proc.returncode == 0 and proc.stdout.strip():
+                            windows = []
+                            for line in proc.stdout.strip().split("\n"):
+                                parts = line.strip().split("|||")
+                                if len(parts) >= 3:
+                                    windows.append({
+                                        "app": parts[0].strip(),
+                                        "title": parts[1].strip(),
+                                        "frontmost": parts[2].strip().lower() == "true",
+                                    })
+                            if windows:
+                                _ctx_cache["screen"] = format_windows_for_context(windows)
                 except Exception:
                     pass
 
@@ -1495,7 +1533,7 @@ return windowList
 async def lifespan(application: FastAPI):
     global anthropic_client, cached_projects
     if ANTHROPIC_API_KEY:
-        anthropic_client = anthropic.AsyncAnthropic(
+        anthropic_client = _AsyncAnthropic(
             api_key=ANTHROPIC_API_KEY,
             base_url="http://0.0.0.0:4000"
         )
@@ -1681,9 +1719,33 @@ def detect_action_fast(text: str) -> dict | None:
 # -- Action Handlers -------------------------------------------------------
 
 async def handle_open_terminal() -> str:
+    """Open a new terminal with Claude Code."""
     claude_cmd = "claude --dangerously-skip-permissions" if _SKIP_PERMISSIONS else "claude"
-    result = await open_terminal(claude_cmd)
-    return result["confirmation"]
+    import sys
+    try:
+        if sys.platform == "win32":
+            cmd = f'start "JARVIS Terminal" cmd.exe /k "{claude_cmd}"'
+            await asyncio.create_subprocess_shell(
+                cmd,
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE,
+            )
+        else:
+            script = (
+                'tell application "Terminal"\n'
+                '    activate\n'
+                f'    do script "{claude_cmd}"\n'
+                'end tell'
+            )
+            await asyncio.create_subprocess_exec(
+                "osascript", "-e", script,
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE,
+            )
+        return "Terminal is open, sir."
+    except Exception as e:
+        log.error(f"handle_open_terminal failed: {e}")
+        return "I wasn't able to open the terminal, sir."
 
 
 async def handle_build(target: str) -> str:
@@ -1701,18 +1763,27 @@ async def handle_build(target: str) -> str:
     prompt_file.write_text(target)
 
     skip_flag = " --dangerously-skip-permissions" if _SKIP_PERMISSIONS else ""
-    escaped_path = applescript_escape(path)
-    script = (
-        'tell application "Terminal"\n'
-        "    activate\n"
-        f'    do script "cd {escaped_path} && cat .jarvis_prompt.txt | claude -p{skip_flag}"\n'
-        "end tell"
-    )
-    await asyncio.create_subprocess_exec(
-        "osascript", "-e", script,
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.PIPE,
-    )
+    import sys
+    if sys.platform == "win32":
+        cmd = f'start "JARVIS Build" cmd.exe /c "cd /d {path} & type .jarvis_prompt.txt | claude -p{skip_flag}"'
+        await asyncio.create_subprocess_shell(
+            cmd,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
+        )
+    else:
+        escaped_path = applescript_escape(path)
+        script = (
+            'tell application "Terminal"\n'
+            "    activate\n"
+            f'    do script "cd {escaped_path} && cat .jarvis_prompt.txt | claude -p{skip_flag}"\n'
+            "end tell"
+        )
+        await asyncio.create_subprocess_exec(
+            "osascript", "-e", script,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
+        )
 
     recently_built.append({"name": name, "path": path, "time": time.time()})
     return f"On it, sir. Claude Code is working in {name}."
@@ -1738,10 +1809,15 @@ async def handle_show_recent() -> str:
         return f"Opened {html_files[0].name} from {last['name']}, sir."
 
     # Fall back to opening the folder in Finder
-    escaped_last_path = applescript_escape(last["path"])
-    script = f'tell application "Finder"\nactivate\nopen POSIX file "{escaped_last_path}"\nend tell'
-    await asyncio.create_subprocess_exec("osascript", "-e", script, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
-    return f"Opened the {last['name']} folder in Finder, sir."
+    import sys
+    if sys.platform == "win32":
+        cmd = f'explorer.exe "{last["path"]}"'
+        await asyncio.create_subprocess_shell(cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
+    else:
+        escaped_last_path = applescript_escape(last["path"])
+        script = f'tell application "Finder"\nactivate\nopen POSIX file "{escaped_last_path}"\nend tell'
+        await asyncio.create_subprocess_exec("osascript", "-e", script, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
+    return f"Opened the {last['name']} folder, sir."
 
 
 # ---------------------------------------------------------------------------
@@ -1918,7 +1994,7 @@ async def handle_browse(text: str, target: str) -> str:
     return "Searching for that, sir."
 
 
-async def handle_research(text: str, target: str, client: anthropic.AsyncAnthropic) -> str:
+async def handle_research(text: str, target: str, client: _AsyncAnthropic) -> str:
     """Deep research with Opus — write results to HTML, open in browser."""
     try:
         research_response = await client.messages.create(
@@ -1977,7 +2053,7 @@ blockquote {{ border-left: 3px solid #0ea5e9; margin-left: 0; padding-left: 16px
 async def _update_session_summary(
     old_summary: str,
     rotated_messages: list[dict],
-    client: anthropic.AsyncAnthropic,
+    client: _AsyncAnthropic,
 ) -> str:
     """Background Haiku call to update the rolling session summary."""
     prompt = f"""Update this conversation summary to include the new messages.
@@ -2594,7 +2670,7 @@ async def api_test_anthropic(body: KeyTest):
     if not key:
         return {"valid": False, "error": "No key provided"}
     try:
-        client = anthropic.AsyncAnthropic(api_key=key)
+        client = _AsyncAnthropic(api_key=key)
         await client.messages.create(model="claude-haiku-4-5-20251001", max_tokens=10, messages=[{"role": "user", "content": "Hi"}])
         return {"valid": True}
     except Exception as e:
@@ -2688,18 +2764,27 @@ async def api_fix_self():
     # The work_session is per-WebSocket, so we set a flag that the handler picks up
     # For now, also open Terminal so user can see
     skip_flag = " --dangerously-skip-permissions" if _SKIP_PERMISSIONS else ""
-    escaped_jarvis_dir = applescript_escape(jarvis_dir)
-    script = (
-        'tell application "Terminal"\n'
-        '    activate\n'
-        f'    do script "cd {escaped_jarvis_dir} && claude{skip_flag}"\n'
-        'end tell'
-    )
-    await asyncio.create_subprocess_exec(
-        "osascript", "-e", script,
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.PIPE,
-    )
+    import sys
+    if sys.platform == "win32":
+        cmd = f'start "JARVIS Fix" cmd.exe /c "cd /d {jarvis_dir} & claude{skip_flag}"'
+        await asyncio.create_subprocess_shell(
+            cmd,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
+        )
+    else:
+        escaped_jarvis_dir = applescript_escape(jarvis_dir)
+        script = (
+            'tell application "Terminal"\\n'
+            '    activate\\n'
+            f'    do script "cd {escaped_jarvis_dir} && claude{skip_flag}"\\n'
+            'end tell'
+        )
+        await asyncio.create_subprocess_exec(
+            "osascript", "-e", script,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
+        )
     log.info("Work mode: JARVIS repo opened for self-improvement")
     return {"status": "work_mode_active", "path": jarvis_dir}
 

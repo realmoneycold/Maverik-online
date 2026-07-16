@@ -5,7 +5,9 @@ from pydantic import BaseModel
 import os
 import glob
 import sys
-sys.path.insert(0, "/home/ahror/Documents/TPLS AI/MAVERIK-Update/MAVERIK_UPDATE_")
+import os
+# Get the absolute path to the root 'Maverik' folder and add it to sys.path
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 from maverik.brain.agent_brain import AgentBrain
 
 app = FastAPI(title="MAVERIK Control Center")

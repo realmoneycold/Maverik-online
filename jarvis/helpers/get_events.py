@@ -86,6 +86,10 @@ async def discover_calendars() -> list[str]:
 
 
 async def main():
+    if sys.platform == "win32":
+        # On Windows, we mock the response to avoid AppleScript crashes.
+        return
+        
     global CALENDARS
     if not CALENDARS:
         CALENDARS = await discover_calendars()

@@ -15,7 +15,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Optional
 
-import anthropic
+from gemini_adapter import AsyncAnthropic as _AsyncAnthropic
 
 from templates import TEMPLATES, get_template
 
@@ -65,7 +65,7 @@ class PlanningDecision:
 
 async def detect_planning_mode(
     user_text: str,
-    client: Optional[anthropic.AsyncAnthropic] = None,
+    client: Optional[_AsyncAnthropic] = None,
     force_bypass: bool = False,
 ) -> PlanningDecision:
     """Classify a user request as simple (execute now) or complex (needs planning).
@@ -124,7 +124,7 @@ def _quick_classify(text: str) -> str:
 
 
 async def _classify_planning_mode_llm(
-    text: str, client: anthropic.AsyncAnthropic
+    text: str, client: _AsyncAnthropic
 ) -> PlanningDecision:
     """Use Haiku to classify request and identify missing info."""
     try:
@@ -398,7 +398,7 @@ class TaskPlanner:
         self,
         user_request: str,
         projects: list[dict],
-        client: anthropic.AsyncAnthropic,
+        client: _AsyncAnthropic,
     ) -> dict:
         """Analyze request and determine what questions to ask.
 
@@ -673,7 +673,7 @@ class TaskPlanner:
 
     # -- Private helpers --
 
-    async def _classify_request(self, text: str, client: anthropic.AsyncAnthropic) -> dict:
+    async def _classify_request(self, text: str, client: _AsyncAnthropic) -> dict:
         """Use Haiku to classify request type and extract known info."""
         try:
             response = await client.messages.create(

@@ -4,7 +4,6 @@ from langchain_core.tools import tool
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage, ToolMessage
 from langchain_groq import ChatGroq
 from maverik.agency.hands import Hands
-from langchain_google_genai import ChatGoogleGenerativeAI
 import logging
 import asyncio
 import os
@@ -167,17 +166,27 @@ def social_intelligence_tool(query: str) -> str:
     Args:
         query: The exact shell command to execute for the specific social platform.
     """
-    import subprocess
+    import subprocess, sys
     try:
-        # Source the virtual environment so agent-reach tools (yt-dlp, twitter, bili) are available
-        result = subprocess.run(
-            f"source .venv/bin/activate && {query}", 
-            shell=True, 
-            executable='/bin/bash',
-            capture_output=True, 
-            text=True,
-            timeout=45
-        )
+        if sys.platform == "win32":
+            # On Windows, skip venv activation and run command directly via cmd
+            result = subprocess.run(
+                query,
+                shell=True,
+                capture_output=True,
+                text=True,
+                timeout=45
+            )
+        else:
+            # Source the virtual environment so agent-reach tools (yt-dlp, twitter, bili) are available
+            result = subprocess.run(
+                f"source .venv/bin/activate && {query}",
+                shell=True,
+                executable='/bin/bash',
+                capture_output=True,
+                text=True,
+                timeout=45
+            )
         if result.returncode == 0:
             return truncate_output(result.stdout)
         else:
@@ -229,22 +238,30 @@ def deep_research_tool(topic: str) -> str:
     Args:
         topic: The topic, person, or trend to research (e.g., 'nvidia earnings reaction', 'AI video tools').
     """
-    import subprocess
-    import os
+    import subprocess, os, sys
     try:
         script_path = os.path.expanduser("~/.agents/skills/last30days/scripts/last30days.py")
         if not os.path.exists(script_path):
             return "Last30Days skill is not installed."
-            
-        # Execute the last30days engine using its dedicated Python 3.12 virtual environment!
-        result = subprocess.run(
-            f"source ~/.agents/skills/last30days/.venv/bin/activate && python3 {script_path} '{topic}' --auto-resolve", 
-            shell=True, 
-            executable='/bin/bash',
-            capture_output=True, 
-            text=True,
-            timeout=180
-        )
+
+        if sys.platform == "win32":
+            result = subprocess.run(
+                f'python "{script_path}" "{topic}" --auto-resolve',
+                shell=True,
+                capture_output=True,
+                text=True,
+                timeout=180
+            )
+        else:
+            # Execute the last30days engine using its dedicated Python 3.12 virtual environment!
+            result = subprocess.run(
+                f"source ~/.agents/skills/last30days/.venv/bin/activate && python3 {script_path} '{topic}' --auto-resolve",
+                shell=True,
+                executable='/bin/bash',
+                capture_output=True,
+                text=True,
+                timeout=180
+            )
         if result.returncode == 0:
             return truncate_output(result.stdout)
         else:
@@ -259,13 +276,14 @@ class AgentBrain:
         self.model_name = model_name
         print(f"🧠 Advanced Agent Brain initializing with model: {self.model_name}")
         
-        # Connect to Google Gemini API
-        self.model = ChatGoogleGenerativeAI(
-            model="gemini-3.5-flash",
+        # Connect to Groq API
+        api_key = os.environ.get("GROQ_API_KEY", "")
+        self.model = ChatGroq(
+            model_name="llama-3.3-70b-versatile",
             temperature=0.0,
-            api_key="AIzaSyC20EStrNQoq2QVTQTBYOqPF4xlo0Y7U7s"
+            api_key=api_key
         )
-        print("🚀 Agent Brain using Google Gemini (3.5 Flash) for extreme speed and high token limits.")
+        print("🚀 Agent Brain using Groq (Llama 3.3 70B) for extreme speed and high token limits.")
         
         # We no longer hardcode self.agent here. We will create it dynamically in athink_and_act based on intent.
         self.all_tools = [terminal_tool, web_surf_tool, save_core_memory, create_python_skill, social_intelligence_tool, api_dictionary_tool, deep_research_tool, vision_tool, fast_web_search_tool]
