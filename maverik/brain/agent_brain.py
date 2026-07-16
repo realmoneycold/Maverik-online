@@ -1,10 +1,13 @@
 from langgraph.prebuilt import create_react_agent
 from langchain_openai import ChatOpenAI
 from langchain_core.tools import tool
-from langchain_core.messages import SystemMessage, HumanMessage
+from langchain_groq import ChatGroq
+from langchain_core.messages import SystemMessage, HumanMessage, AIMessage, ToolMessage
 from maverik.agency.hands import Hands
+from langchain_google_genai import ChatGoogleGenerativeAI
 import logging
 import asyncio
+import os
 
 # Initialize Hands module so the tools can use it
 hands = Hands()
@@ -52,7 +55,6 @@ def web_surf_tool(task: str) -> str:
     Args:
         task: The specific goal or task to accomplish on the web GUI.
     """
-    import asyncio
     return asyncio.run(hands.surf_web(task))
 
 @tool
@@ -91,7 +93,6 @@ def gui_control_tool(task: str) -> str:
     Args:
         task: The specific task to accomplish on the screen (e.g., 'Open spotify', 'Click the start button', 'Type hello in notepad').
     """
-    import asyncio
     return asyncio.run(hands.control_gui(task))
 
 @tool
@@ -253,22 +254,141 @@ def deep_research_tool(topic: str) -> str:
     except Exception as e:
         return f"Execution failed: {e}"
 
+@tool
+def query_screenpipe_tool(query: str) -> str:
+    """
+    Queries the local Screenpipe API to search the user's recent screen history (OCR and Audio).
+    Use this when the user asks "what did I look at", "what did I read", "what did John say", or asks to recall information from their screen history.
+    
+    Args:
+        query: The search term or question to look up in the screen history.
+    """
+    import httpx
+    try:
+        url = "http://localhost:3030/search"
+        params = {"q": query, "limit": 10}
+        with httpx.Client(timeout=10.0) as client:
+            response = client.get(url, params=params)
+            response.raise_for_status()
+            data = response.json()
+            
+            if not data.get("data"):
+                return f"No results found in screen history for '{query}'."
+                
+            results = []
+            for item in data["data"]:
+                item_type = item.get("type", "")
+                content = item.get("content", {})
+                timestamp = content.get("timestamp", "")
+                
+                if item_type == "OCR":
+                    text = content.get("text", "")
+                    results.append(f"[OCR {timestamp}]: {text}")
+                elif item_type == "Audio":
+                    text = content.get("transcription", "")
+                    results.append(f"[Audio {timestamp}]: {text}")
+            
+            formatted_results = "\\n".join(results[:10])
+            return truncate_output(f"Found {len(results)} results in screen history:\\n{formatted_results}")
+    except Exception as e:
+        return f"Failed to query Screenpipe. Is it running? Error: {e}"
+
+@tool
+def search_local_documents_tool(query: str) -> str:
+    """
+    Searches the user's local documents (PDFs, Markdown, text, code) for information.
+    Use this when the user asks you to find a document, recall notes, or search their local files.
+    
+    Args:
+        query: The search term or question to find in the local documents.
+    """
+    import chromadb
+    import os
+    from chromadb.utils import embedding_functions
+    try:
+        chroma_db_path = os.path.expanduser("~/.maverik_chroma_db")
+        if not os.path.exists(chroma_db_path):
+            return "Local document index not found. The background indexer may not have run yet."
+            
+        client = chromadb.PersistentClient(path=chroma_db_path)
+        ollama_ef = embedding_functions.OllamaEmbeddingFunction(
+            url="http://localhost:11434/api/embeddings",
+            model_name="nomic-embed-text"
+        )
+        collection = client.get_collection(name="local_documents", embedding_function=ollama_ef)
+        
+        results = collection.query(
+            query_texts=[query],
+            n_results=5
+        )
+        
+        if not results['documents'] or not results['documents'][0]:
+            return f"No relevant documents found for '{query}'."
+            
+        formatted_results = []
+        for doc, meta in zip(results['documents'][0], results['metadatas'][0]):
+            source = meta.get('source', 'Unknown')
+            formatted_results.append(f"Source: {source}\\nExcerpt: {doc}\\n")
+            
+        return truncate_output(f"Found information in local documents:\\n\\n" + "\\n".join(formatted_results))
+    except Exception as e:
+        return f"Failed to search local documents. Error: {e}"
+
+@tool
+def search_browser_history_tool(query: str) -> str:
+    """
+    Searches the user's Chrome browser history.
+    Use this when the user asks "what website did I visit", "find that site about X", or wants to recall their browsing history.
+    
+    Args:
+        query: The search term or topic to look for in the browser history.
+    """
+    import chromadb
+    import os
+    from chromadb.utils import embedding_functions
+    try:
+        chroma_db_path = os.path.expanduser("~/.maverik_chroma_db")
+        if not os.path.exists(chroma_db_path):
+            return "Browser history index not found. The indexer may not have run yet."
+            
+        client = chromadb.PersistentClient(path=chroma_db_path)
+        ollama_ef = embedding_functions.OllamaEmbeddingFunction(
+            url="http://localhost:11434/api/embeddings",
+            model_name="nomic-embed-text"
+        )
+        collection = client.get_collection(name="browser_history", embedding_function=ollama_ef)
+        
+        results = collection.query(
+            query_texts=[query],
+            n_results=5
+        )
+        
+        if not results['documents'] or not results['documents'][0]:
+            return f"No relevant browser history found for '{query}'."
+            
+        formatted_results = []
+        for doc in results['documents'][0]:
+            formatted_results.append(f"{doc}\\n")
+            
+        return truncate_output(f"Found these websites in history:\\n\\n" + "\\n".join(formatted_results))
+    except Exception as e:
+        return f"Failed to search browser history. Error: {e}"
+
 class AgentBrain:
     def __init__(self, model_name="qwen3.5:2b"):
         self.model_name = model_name
         print(f"🧠 Advanced Agent Brain initializing with model: {self.model_name}")
         
-        # Connect to the local Ollama instance using the OpenAI compatible endpoint
-        self.model = ChatOpenAI(
-            model=self.model_name,
-            base_url="http://127.0.0.1:11434/v1",
-            api_key="ollama", # The API key is ignored by Ollama, but required by the client
-            timeout=300.0,
-            max_retries=0
+        # Connect to Google Gemini API
+        self.model = ChatGoogleGenerativeAI(
+            model="gemini-3.5-flash",
+            temperature=0.0,
+            api_key="AIzaSyC20EStrNQoq2QVTQTBYOqPF4xlo0Y7U7s"
         )
+        print("🚀 Agent Brain using Google Gemini (3.5 Flash) for extreme speed and high token limits.")
         
         # We no longer hardcode self.agent here. We will create it dynamically in athink_and_act based on intent.
-        self.all_tools = [terminal_tool, web_surf_tool, save_core_memory, create_python_skill, social_intelligence_tool, api_dictionary_tool, deep_research_tool, vision_tool, fast_web_search_tool]
+        self.all_tools = [terminal_tool, web_surf_tool, save_core_memory, create_python_skill, social_intelligence_tool, api_dictionary_tool, deep_research_tool, vision_tool, fast_web_search_tool, query_screenpipe_tool, search_local_documents_tool, search_browser_history_tool]
         print(f"🧠 Zero-VRAM Core Memory module active.")
 
     async def athink_and_act(self, user_text: str, intent: str = None) -> str:
@@ -278,19 +398,42 @@ class AgentBrain:
         try:
             # 1. Dynamically select tools based on Intent to massively reduce context overhead and latency
             if intent == "web_search":
-                active_tools = [fast_web_search_tool, deep_research_tool]
-                rules = "You must search the web. Prioritize 'fast_web_search_tool' for general info, and 'deep_research_tool' for social/sentiment analysis."
+                log.info(f"⚡ Bypassing agent for direct web search: {user_text}")
+                try:
+                    loop = asyncio.get_event_loop()
+                    if "deep" in user_text.lower() or "summarize" in user_text.lower() or "latest" in user_text.lower():
+                        result = await loop.run_in_executor(None, deep_research_tool.invoke, {"topic": user_text})
+                    else:
+                        result = await loop.run_in_executor(None, fast_web_search_tool.invoke, {"query": user_text})
+                    
+                    # Truncate result if it's too long before summarization
+                    result_text = result[:3000] if isinstance(result, str) else str(result)[:3000]
+                    
+                    # Generate a quick conversational summary so the AI doesn't just read raw JSON back to the user
+                    from langchain_core.messages import HumanMessage
+                    summary = await self.model.ainvoke([
+                        HumanMessage(content=f"You are JARVIS. The user asked to research: '{user_text}'. Summarize these search results naturally in 2-3 sentences. DO NOT use formatting, markdown, or links. Speak conversationally.\n\nResults: {result_text}")
+                    ])
+                    return summary.content
+                except Exception as e:
+                    return f"Execution failed: {e}"
             elif intent == "system_command":
-                active_tools = [terminal_tool, create_python_skill, api_dictionary_tool]
-                rules = "To open apps or execute system commands, use 'terminal_tool'. To write a script, use 'api_dictionary_tool' then 'create_python_skill'."
+                active_tools = [terminal_tool]
+                rules = (
+                    "To open apps or execute system commands, use 'terminal_tool'. "
+                    "If asked to organize, manage, or sort files on the Desktop, you MUST use 'terminal_tool' to run 'python3 ~/.maverik_skills/organize_desktop.py'. This custom skill safely organizes files into categories. Do NOT try to move the files using bash commands.\n"
+                    "If a tool returns an Error, you MUST tell the user it failed. Do NOT say it was successful."
+                )
             else:
-                active_tools = [terminal_tool, save_core_memory, create_python_skill, social_intelligence_tool, api_dictionary_tool, deep_research_tool, vision_tool, fast_web_search_tool]
+                active_tools = [terminal_tool, save_core_memory, create_python_skill, social_intelligence_tool, api_dictionary_tool, deep_research_tool, vision_tool, fast_web_search_tool, query_screenpipe_tool, search_local_documents_tool, search_browser_history_tool]
                 rules = (
                     f"1. PROFILING: If the user reveals facts about themselves, use 'save_core_memory'.\n"
                     f"2. SOCIAL MEDIA: When asked to fetch posts from Twitter, Reddit, or YouTube, ALWAYS use 'social_intelligence_tool'.\n"
                     f"3. VISION: When asked what is on the screen, use 'vision_tool'.\n"
                     f"4. WEB SEARCH: When asked to search the web, use 'fast_web_search_tool'.\n"
                 )
+                
+            rules += "\nCRITICAL: You are an autonomous agent. When asked to research or search, you MUST physically execute the 'fast_web_search_tool' tool. DO NOT just reply with text saying 'Searching the web now'. You must trigger the tool call directly!"
 
             # 2. Hardcode a safe, minimal background context to prevent the 2B model from hallucinating
             past_context = "\n[USER CONTEXT]: The user's name is Ahror.\n"
@@ -325,7 +468,8 @@ class AgentBrain:
                 f"{skills_context}"
                 f"You are MAVERIK, a highly intelligent, autonomous desktop assistant.\n"
                 f"{rules}\n"
-                f"CRITICAL RULE: If the user is just saying 'hello' or making normal conversation, respond naturally and warmly. DO NOT list out your memory context unless asked. If you executed a tool, return a brief conversational summary (1 sentence) of what you accomplished."
+                f"CRITICAL RULE: If the user is just saying 'hello' or making normal conversation, respond naturally and warmly. DO NOT list out your memory context unless asked.\n"
+                f"CRITICAL RULE: If you executed a tool and it returned an 'Error', you MUST inform the user of the failure. Do not hallucinate success. If successful, return a brief conversational summary (1 sentence) of what you accomplished."
             )
             
             # This triggers the autonomous reasoning and action loop asynchronously!
