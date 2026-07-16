@@ -47,8 +47,10 @@ function updateStatus(state: State) {
 const canvas = document.getElementById("orb-canvas") as HTMLCanvasElement;
 const orb = createOrb(canvas);
 
-const wsProto = window.location.protocol === "https:" ? "wss:" : "ws:";
-const WS_URL = `${wsProto}//${window.location.host}/ws/voice`;
+const isFileProtocol = window.location.protocol === "file:" || window.location.protocol === "app:";
+const wsProto = isFileProtocol ? "ws:" : (window.location.protocol === "https:" ? "wss:" : "ws:");
+const wsHost = isFileProtocol ? "localhost:8340" : window.location.host;
+const WS_URL = `${wsProto}//${wsHost}/ws/voice`;
 const socket = createSocket(WS_URL);
 
 const audioPlayer = createAudioPlayer();
@@ -82,9 +84,8 @@ function transition(newState: State) {
 
 const voiceInput = createVoiceInput(
   (text: string) => {
-    // Cancel any current JARVIS response before sending new input
+    // Keep this for compatibility if we ever use client STT again
     audioPlayer.stop();
-    // User spoke — send transcript
     socket.send({ type: "transcript", text, isFinal: true });
     transition("thinking");
   },
@@ -92,6 +93,15 @@ const voiceInput = createVoiceInput(
     showError(msg);
   }
 );
+
+// Global hook used by voice.ts to send audio chunks to backend STT
+// @ts-ignore
+window.sendAudioInput = (base64data: string) => {
+  // Cancel JARVIS playback if user starts speaking
+  audioPlayer.stop();
+  transition("thinking");
+  socket.send({ type: "audio_input", data: base64data });
+};
 
 // ---------------------------------------------------------------------------
 // Audio playback finished

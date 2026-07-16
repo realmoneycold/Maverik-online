@@ -2175,6 +2175,47 @@ async def voice_handler(ws: WebSocket):
                     await ws.send_json({"type": "text", "text": response_text})
                 continue
 
+            if msg.get("type") == "audio_input":
+                audio_b64 = msg.get("data")
+                if not audio_b64:
+                    continue
+                import tempfile
+                audio_bytes = base64.b64decode(audio_b64)
+                with tempfile.NamedTemporaryFile(suffix=".webm", delete=False) as tmp:
+                    tmp.write(audio_bytes)
+                    tmp_name = tmp.name
+                try:
+                    groq_key = os.getenv("GROQ_API_KEY")
+                    if not groq_key:
+                        log.warning("GROQ_API_KEY not set for STT")
+                        await ws.send_json({"type": "status", "state": "idle"})
+                        continue
+                    async with httpx.AsyncClient(timeout=10.0) as http:
+                        with open(tmp_name, "rb") as f:
+                            resp = await http.post(
+                                "https://api.groq.com/openai/v1/audio/transcriptions",
+                                headers={"Authorization": f"Bearer {groq_key}"},
+                                files={"file": ("audio.webm", f, "audio/webm")},
+                                data={"model": "whisper-large-v3"}
+                            )
+                        if resp.status_code == 200:
+                            transcript = resp.json().get("text", "").strip()
+                            if not transcript:
+                                await ws.send_json({"type": "status", "state": "idle"})
+                                continue
+                            log.info(f"STT Transcript: {transcript}")
+                            msg = {"type": "transcript", "text": transcript, "isFinal": True}
+                        else:
+                            log.error(f"Groq STT failed: {resp.status_code} {resp.text}")
+                            await ws.send_json({"type": "status", "state": "idle"})
+                            continue
+                except Exception as e:
+                    log.error(f"STT exception: {e}")
+                    await ws.send_json({"type": "status", "state": "idle"})
+                    continue
+                finally:
+                    os.unlink(tmp_name)
+
             if msg.get("type") != "transcript" or not msg.get("isFinal"):
                 continue
 

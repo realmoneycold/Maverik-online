@@ -13,87 +13,137 @@ export interface VoiceInput {
   resume(): void;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-declare const webkitSpeechRecognition: any;
-
 export function createVoiceInput(
   onTranscript: (text: string) => void,
   onError: (msg: string) => void
 ): VoiceInput {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const SR = (window as any).SpeechRecognition || (typeof webkitSpeechRecognition !== "undefined" ? webkitSpeechRecognition : null);
-  if (!SR) {
-    onError("Speech recognition not supported in this browser");
-    return { start() {}, stop() {}, pause() {}, resume() {} };
-  }
-
-  const recognition = new SR();
-  recognition.continuous = true;
-  recognition.interimResults = true;
-  recognition.lang = "en-US";
-
   let shouldListen = false;
-  let paused = false;
+  let isRecording = false;
+  let isPaused = false;
+  let mediaRecorder: MediaRecorder | null = null;
+  let audioChunks: Blob[] = [];
+  
+  let audioCtx: AudioContext | null = null;
+  let analyser: AnalyserNode | null = null;
+  let stream: MediaStream | null = null;
+  let silenceTimer: ReturnType<typeof setTimeout> | null = null;
 
-  recognition.onresult = (event: any) => {
-    for (let i = event.resultIndex; i < event.results.length; i++) {
-      if (event.results[i].isFinal) {
-        const text = event.results[i][0].transcript.trim();
-        if (text) onTranscript(text);
+  async function startRecording() {
+    if (isRecording || isPaused || !shouldListen) return;
+
+    try {
+      if (!stream) {
+        stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       }
-    }
-  };
 
-  recognition.onend = () => {
-    if (shouldListen && !paused) {
-      try {
-        recognition.start();
-      } catch {
-        // Already started
+      mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
+      
+      if (!audioCtx) {
+        audioCtx = new AudioContext();
+        const source = audioCtx.createMediaStreamSource(stream);
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 512;
+        source.connect(analyser);
       }
-    }
-  };
 
-  recognition.onerror = (event: any) => {
-    if (event.error === "not-allowed") {
-      onError("Microphone access denied. Please allow microphone access.");
-      shouldListen = false;
-    } else if (event.error === "no-speech") {
-      // Normal, just restart
-    } else if (event.error === "aborted") {
-      // Expected during pause
-    } else {
-      console.warn("[voice] recognition error:", event.error);
+      const pcmData = new Uint8Array(analyser!.frequencyBinCount);
+
+      function checkSilence() {
+        if (!isRecording) return; // stop loop
+        
+        analyser!.getByteFrequencyData(pcmData);
+        let sum = 0;
+        for (let i = 0; i < pcmData.length; i++) sum += pcmData[i];
+        let average = sum / pcmData.length;
+        
+        // Threshold for speaking
+        if (average > 10) { 
+          if (silenceTimer) {
+             clearTimeout(silenceTimer);
+             silenceTimer = null;
+          }
+        } else {
+          // Silence detected
+          if (!silenceTimer && isRecording) {
+             silenceTimer = setTimeout(() => {
+                if (isRecording && mediaRecorder?.state === 'recording') {
+                   mediaRecorder.stop();
+                }
+             }, 1200); // Wait 1.2s of silence before stopping chunk
+          }
+        }
+        
+        requestAnimationFrame(checkSilence);
+      }
+
+      mediaRecorder.ondataavailable = (e) => {
+        if (e.data.size > 0) audioChunks.push(e.data);
+      };
+      
+      mediaRecorder.onstop = () => {
+        isRecording = false;
+        
+        if (audioChunks.length > 0) {
+          const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+          audioChunks = [];
+          
+          // Send to backend via a global hook that main.ts will set up
+          const reader = new FileReader();
+          reader.readAsDataURL(audioBlob);
+          reader.onloadend = () => {
+            const base64data = (reader.result as string).split(',')[1];
+            // @ts-ignore
+            if (window.sendAudioInput) {
+              // @ts-ignore
+              window.sendAudioInput(base64data);
+            }
+          };
+        }
+        
+        // Restart recording if we should still be listening
+        if (shouldListen && !isPaused) {
+           setTimeout(() => {
+              if (shouldListen && !isPaused && !isRecording) {
+                 startRecording();
+              }
+           }, 100);
+        }
+      };
+
+      isRecording = true;
+      mediaRecorder.start();
+      checkSilence();
+      
+    } catch (e) {
+       console.error("Microphone error:", e);
+       onError("Microphone access denied or error.");
+       shouldListen = false;
     }
-  };
+  }
 
   return {
     start() {
       shouldListen = true;
-      paused = false;
-      try {
-        recognition.start();
-      } catch {
-        // Already started
-      }
+      isPaused = false;
+      startRecording();
     },
     stop() {
       shouldListen = false;
-      paused = false;
-      recognition.stop();
+      isPaused = false;
+      if (isRecording && mediaRecorder?.state === 'recording') {
+        mediaRecorder.stop();
+      }
     },
     pause() {
-      paused = true;
-      recognition.stop();
+      isPaused = true;
+      if (isRecording && mediaRecorder?.state === 'recording') {
+        mediaRecorder.stop();
+      }
     },
     resume() {
-      paused = false;
-      if (shouldListen) {
-        try {
-          recognition.start();
-        } catch {
-          // Already started
-        }
+      isPaused = false;
+      if (shouldListen && !isRecording) {
+        startRecording();
       }
     },
   };

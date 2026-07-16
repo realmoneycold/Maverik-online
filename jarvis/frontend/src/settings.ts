@@ -46,12 +46,16 @@ let setupStep = 0; // 0=anthropic, 1=fish, 2=name, 3=done
 // ---------------------------------------------------------------------------
 
 async function apiGet<T>(url: string): Promise<T> {
-  const res = await fetch(url);
+  const isFileProtocol = window.location.protocol === "file:" || window.location.protocol === "app:";
+  const baseUrl = isFileProtocol ? "http://localhost:8340" : "";
+  const res = await fetch(`${baseUrl}${url}`);
   return res.json();
 }
 
 async function apiPost<T>(url: string, body: unknown): Promise<T> {
-  const res = await fetch(url, {
+  const isFileProtocol = window.location.protocol === "file:" || window.location.protocol === "app:";
+  const baseUrl = isFileProtocol ? "http://localhost:8340" : "";
+  const res = await fetch(`${baseUrl}${url}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
